@@ -1,0 +1,12 @@
+
+---
+
+# 📘 docs/installation.md
+
+```md
+# Installation
+
+## npm
+
+```bash
+npm install avss-lite
