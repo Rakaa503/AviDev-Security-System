@@ -51,6 +51,7 @@ __export(index_exports, {
   ErrorCode: () => ErrorCode,
   EventEmitter: () => EventEmitter,
   ForbiddenError: () => ForbiddenError,
+  HonoAdapter: () => HonoAdapter,
   InternalServerError: () => InternalServerError,
   Logger: () => Logger,
   MemoryStore: () => MemoryStore,
@@ -86,6 +87,7 @@ __export(index_exports, {
   createGithubProvider: () => createGithubProvider,
   createGitlabProvider: () => createGitlabProvider,
   createGoogleProvider: () => createGoogleProvider,
+  createHono: () => createHono,
   createMicrosoftProvider: () => createMicrosoftProvider,
   createSecurity: () => createSecurity,
   csrfMiddleware: () => csrfMiddleware,
@@ -157,59 +159,169 @@ __export(index_exports, {
 });
 module.exports = __toCommonJS(index_exports);
 
-// src/cors/cors.ts
-var import_cors = __toESM(require("cors"), 1);
-var corsMiddleware = (0, import_cors.default)({
-  origin: true,
-  credentials: true
-});
-
-// src/env/env.ts
-var import_config = require("dotenv/config");
-var import_zod = require("zod");
-var envSchema = import_zod.z.object({
-  NODE_ENV: import_zod.z.enum([
-    "development",
-    "production",
-    "test"
-  ]).default("development"),
-  DATABASE_URL: import_zod.z.string().min(1),
-  BETTER_AUTH_SECRET: import_zod.z.string().min(32, "BETTER_AUTH_SECRET minimal 32 karakter"),
-  BETTER_AUTH_URL: import_zod.z.string().url("BETTER_AUTH_URL harus berupa URL yang valid")
-});
-function validateEnv() {
-  return envSchema.parse(process.env);
-}
-
-// src/prisma/prisma.ts
-var import_client = require("@prisma/client");
-var prisma = global.prisma ?? new import_client.PrismaClient();
-if (process.env.NODE_ENV !== "production") {
-  global.prisma = prisma;
-}
-
-// src/validation/validation.ts
-function validate(schema, input) {
-  const result = schema.safeParse(input);
-  if (result.success) {
-    return {
-      success: true,
-      data: result.data
+// src/adapters/hono/hono.ts
+var HonoAdapter = class {
+  options;
+  constructor(options = {}) {
+    this.options = {
+      logger: options.logger ?? true,
+      security: options.security ?? true,
+      auth: options.auth ?? false
     };
   }
-  return {
-    success: false,
-    errors: result.error.issues.map(
-      (issue) => issue.message
-    )
-  };
-}
-function validateOrThrow(schema, input) {
-  return schema.parse(input);
+  /**
+   * Adapter configuration
+   */
+  get config() {
+    return this.options;
+  }
+};
+function createHono(options) {
+  return new HonoAdapter(options);
 }
 
-// src/dev.ts
-var import_client2 = require("@prisma/client");
+// src/audit/events.ts
+var AuditEvent = /* @__PURE__ */ ((AuditEvent2) => {
+  AuditEvent2["LOGIN"] = "LOGIN";
+  AuditEvent2["LOGOUT"] = "LOGOUT";
+  AuditEvent2["REGISTER"] = "REGISTER";
+  AuditEvent2["FAILED_LOGIN"] = "FAILED_LOGIN";
+  AuditEvent2["CHANGE_PASSWORD"] = "CHANGE_PASSWORD";
+  AuditEvent2["CHANGE_ROLE"] = "CHANGE_ROLE";
+  AuditEvent2["CREATE_USER"] = "CREATE_USER";
+  AuditEvent2["UPDATE_USER"] = "UPDATE_USER";
+  AuditEvent2["DELETE_USER"] = "DELETE_USER";
+  AuditEvent2["VERIFY_EMAIL"] = "VERIFY_EMAIL";
+  AuditEvent2["RESET_PASSWORD"] = "RESET_PASSWORD";
+  return AuditEvent2;
+})(AuditEvent || {});
+
+// src/audit/formatter.ts
+function formatAudit(entry) {
+  const lines = [];
+  lines.push("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
+  lines.push(`\u{1F4CB} ${entry.event}`);
+  lines.push("");
+  if (entry.user) {
+    lines.push(`\u{1F464} User  : ${entry.user.name}`);
+    lines.push(`\u{1F194} ID    : ${entry.user.id}`);
+    if (entry.user.email) {
+      lines.push(`\u{1F4E7} Email : ${entry.user.email}`);
+    }
+    if (entry.user.role) {
+      lines.push(`\u{1F6E1}\uFE0F Role  : ${entry.user.role}`);
+    }
+  }
+  if (entry.ip) {
+    lines.push(`\u{1F310} IP    : ${entry.ip}`);
+  }
+  if (entry.userAgent) {
+    lines.push(`\u{1F4BB} Agent : ${entry.userAgent}`);
+  }
+  if (entry.message) {
+    lines.push(`\u{1F4DD} Note  : ${entry.message}`);
+  }
+  lines.push(
+    `\u{1F552} Time  : ${entry.timestamp.toLocaleString()}`
+  );
+  lines.push("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
+  return lines.join("\n");
+}
+
+// src/audit/audit.ts
+var Audit = class {
+  log(entry) {
+    console.log(formatAudit(entry));
+  }
+  login(user) {
+    this.log({
+      event: "LOGIN" /* LOGIN */,
+      user,
+      message: "Login Success",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  logout(user) {
+    this.log({
+      event: "LOGOUT" /* LOGOUT */,
+      user,
+      message: "Logout Success",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  register(user) {
+    this.log({
+      event: "REGISTER" /* REGISTER */,
+      user,
+      message: "Account Registered",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  failedLogin(email) {
+    this.log({
+      event: "FAILED_LOGIN" /* FAILED_LOGIN */,
+      message: `Failed Login (${email})`,
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  changePassword(user) {
+    this.log({
+      event: "CHANGE_PASSWORD" /* CHANGE_PASSWORD */,
+      user,
+      message: "Password Changed",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  changeRole(user, oldRole, newRole) {
+    this.log({
+      event: "CHANGE_ROLE" /* CHANGE_ROLE */,
+      user,
+      message: `${oldRole} \u279C ${newRole}`,
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  createUser(user) {
+    this.log({
+      event: "CREATE_USER" /* CREATE_USER */,
+      user,
+      message: "User Created",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  updateUser(user) {
+    this.log({
+      event: "UPDATE_USER" /* UPDATE_USER */,
+      user,
+      message: "User Updated",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  deleteUser(user) {
+    this.log({
+      event: "DELETE_USER" /* DELETE_USER */,
+      user,
+      message: "User Deleted",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  verifyEmail(user) {
+    this.log({
+      event: "VERIFY_EMAIL" /* VERIFY_EMAIL */,
+      user,
+      message: "Email Verified",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+  resetPassword(user) {
+    this.log({
+      event: "RESET_PASSWORD" /* RESET_PASSWORD */,
+      user,
+      message: "Password Reset",
+      timestamp: /* @__PURE__ */ new Date()
+    });
+  }
+};
+var audit = new Audit();
 
 // src/auth/auth.ts
 var import_better_auth = require("better-auth");
@@ -462,179 +574,12 @@ var PROVIDERS = {
 var PROVIDERS_FRAMEWORK = "AVSS Providers";
 var PROVIDERS_VERSION = "v1.0.0";
 
-// src/plugins/logger.ts
-function loggerPlugin() {
-  return {
-    name: "Logger",
-    setup() {
-      console.log("\u{1F4DD} Logger Plugin Loaded");
-    }
-  };
-}
-
-// src/plugins/audit.ts
-function auditPlugin() {
-  return {
-    name: "Audit",
-    setup() {
-      console.log("\u{1F4CB} Audit Plugin Loaded");
-    }
-  };
-}
-
-// src/dev.ts
-var prisma2 = new import_client2.PrismaClient();
-var auth = createAuth({
-  prisma: prisma2,
-  plugins: [
-    loggerPlugin(),
-    auditPlugin()
-  ]
+// src/cors/cors.ts
+var import_cors = __toESM(require("cors"), 1);
+var corsMiddleware = (0, import_cors.default)({
+  origin: true,
+  credentials: true
 });
-console.log(auth);
-
-// src/audit/events.ts
-var AuditEvent = /* @__PURE__ */ ((AuditEvent2) => {
-  AuditEvent2["LOGIN"] = "LOGIN";
-  AuditEvent2["LOGOUT"] = "LOGOUT";
-  AuditEvent2["REGISTER"] = "REGISTER";
-  AuditEvent2["FAILED_LOGIN"] = "FAILED_LOGIN";
-  AuditEvent2["CHANGE_PASSWORD"] = "CHANGE_PASSWORD";
-  AuditEvent2["CHANGE_ROLE"] = "CHANGE_ROLE";
-  AuditEvent2["CREATE_USER"] = "CREATE_USER";
-  AuditEvent2["UPDATE_USER"] = "UPDATE_USER";
-  AuditEvent2["DELETE_USER"] = "DELETE_USER";
-  AuditEvent2["VERIFY_EMAIL"] = "VERIFY_EMAIL";
-  AuditEvent2["RESET_PASSWORD"] = "RESET_PASSWORD";
-  return AuditEvent2;
-})(AuditEvent || {});
-
-// src/audit/formatter.ts
-function formatAudit(entry) {
-  const lines = [];
-  lines.push("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
-  lines.push(`\u{1F4CB} ${entry.event}`);
-  lines.push("");
-  if (entry.user) {
-    lines.push(`\u{1F464} User  : ${entry.user.name}`);
-    lines.push(`\u{1F194} ID    : ${entry.user.id}`);
-    if (entry.user.email) {
-      lines.push(`\u{1F4E7} Email : ${entry.user.email}`);
-    }
-    if (entry.user.role) {
-      lines.push(`\u{1F6E1}\uFE0F Role  : ${entry.user.role}`);
-    }
-  }
-  if (entry.ip) {
-    lines.push(`\u{1F310} IP    : ${entry.ip}`);
-  }
-  if (entry.userAgent) {
-    lines.push(`\u{1F4BB} Agent : ${entry.userAgent}`);
-  }
-  if (entry.message) {
-    lines.push(`\u{1F4DD} Note  : ${entry.message}`);
-  }
-  lines.push(
-    `\u{1F552} Time  : ${entry.timestamp.toLocaleString()}`
-  );
-  lines.push("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
-  return lines.join("\n");
-}
-
-// src/audit/audit.ts
-var Audit = class {
-  log(entry) {
-    console.log(formatAudit(entry));
-  }
-  login(user) {
-    this.log({
-      event: "LOGIN" /* LOGIN */,
-      user,
-      message: "Login Success",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  logout(user) {
-    this.log({
-      event: "LOGOUT" /* LOGOUT */,
-      user,
-      message: "Logout Success",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  register(user) {
-    this.log({
-      event: "REGISTER" /* REGISTER */,
-      user,
-      message: "Account Registered",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  failedLogin(email) {
-    this.log({
-      event: "FAILED_LOGIN" /* FAILED_LOGIN */,
-      message: `Failed Login (${email})`,
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  changePassword(user) {
-    this.log({
-      event: "CHANGE_PASSWORD" /* CHANGE_PASSWORD */,
-      user,
-      message: "Password Changed",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  changeRole(user, oldRole, newRole) {
-    this.log({
-      event: "CHANGE_ROLE" /* CHANGE_ROLE */,
-      user,
-      message: `${oldRole} \u279C ${newRole}`,
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  createUser(user) {
-    this.log({
-      event: "CREATE_USER" /* CREATE_USER */,
-      user,
-      message: "User Created",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  updateUser(user) {
-    this.log({
-      event: "UPDATE_USER" /* UPDATE_USER */,
-      user,
-      message: "User Updated",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  deleteUser(user) {
-    this.log({
-      event: "DELETE_USER" /* DELETE_USER */,
-      user,
-      message: "User Deleted",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  verifyEmail(user) {
-    this.log({
-      event: "VERIFY_EMAIL" /* VERIFY_EMAIL */,
-      user,
-      message: "Email Verified",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-  resetPassword(user) {
-    this.log({
-      event: "RESET_PASSWORD" /* RESET_PASSWORD */,
-      user,
-      message: "Password Reset",
-      timestamp: /* @__PURE__ */ new Date()
-    });
-  }
-};
-var audit = new Audit();
 
 // src/doctor/doctor.ts
 var Doctor = class {
@@ -672,6 +617,23 @@ var Doctor = class {
   }
 };
 var doctor = new Doctor();
+
+// src/env/env.ts
+var import_config2 = require("dotenv/config");
+var import_zod = require("zod");
+var envSchema = import_zod.z.object({
+  NODE_ENV: import_zod.z.enum([
+    "development",
+    "production",
+    "test"
+  ]).default("development"),
+  DATABASE_URL: import_zod.z.string().min(1),
+  BETTER_AUTH_SECRET: import_zod.z.string().min(32, "BETTER_AUTH_SECRET minimal 32 karakter"),
+  BETTER_AUTH_URL: import_zod.z.string().url("BETTER_AUTH_URL harus berupa URL yang valid")
+});
+function validateEnv() {
+  return envSchema.parse(process.env);
+}
 
 // src/errors/base.ts
 var AVSSError = class extends Error {
@@ -1048,6 +1010,33 @@ function rotateLogs() {
     return;
   }
   console.log("\u{1F4E6} Log rotation checked.");
+}
+
+// src/plugins/logger.ts
+function loggerPlugin() {
+  return {
+    name: "Logger",
+    setup() {
+      console.log("\u{1F4DD} Logger Plugin Loaded");
+    }
+  };
+}
+
+// src/plugins/audit.ts
+function auditPlugin() {
+  return {
+    name: "Audit",
+    setup() {
+      console.log("\u{1F4CB} Audit Plugin Loaded");
+    }
+  };
+}
+
+// src/prisma/prisma.ts
+var import_client = require("@prisma/client");
+var prisma = global.prisma ?? new import_client.PrismaClient();
+if (process.env.NODE_ENV !== "production") {
+  global.prisma = prisma;
 }
 
 // src/security/config.ts
@@ -1647,6 +1636,38 @@ ${title}
   });
   console.log();
 }
+
+// src/validation/validation.ts
+function validate(schema, input) {
+  const result = schema.safeParse(input);
+  if (result.success) {
+    return {
+      success: true,
+      data: result.data
+    };
+  }
+  return {
+    success: false,
+    errors: result.error.issues.map(
+      (issue) => issue.message
+    )
+  };
+}
+function validateOrThrow(schema, input) {
+  return schema.parse(input);
+}
+
+// src/dev.ts
+var import_client2 = require("@prisma/client");
+var prisma2 = new import_client2.PrismaClient();
+var auth = createAuth({
+  prisma: prisma2,
+  plugins: [
+    loggerPlugin(),
+    auditPlugin()
+  ]
+});
+console.log(auth);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AVSSError,
@@ -1670,6 +1691,7 @@ ${title}
   ErrorCode,
   EventEmitter,
   ForbiddenError,
+  HonoAdapter,
   InternalServerError,
   Logger,
   MemoryStore,
@@ -1705,6 +1727,7 @@ ${title}
   createGithubProvider,
   createGitlabProvider,
   createGoogleProvider,
+  createHono,
   createMicrosoftProvider,
   createSecurity,
   csrfMiddleware,

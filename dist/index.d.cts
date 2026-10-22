@@ -1,41 +1,94 @@
+import * as better_auth from 'better-auth';
+import * as _prisma_client from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
 import { z, ZodType } from 'zod';
 import * as _prisma_client_runtime_library from '@prisma/client/runtime/library';
-import * as _prisma_client from '@prisma/client';
-import { PrismaClient } from '@prisma/client';
-import * as better_auth from 'better-auth';
 
-declare const corsMiddleware: (req: cors.CorsRequest, res: {
-    statusCode?: number | undefined;
-    setHeader(key: string, value: string): any;
-    end(): any;
-}, next: (err?: any) => any) => void;
-
-declare const envSchema: z.ZodObject<{
-    NODE_ENV: z.ZodDefault<z.ZodEnum<{
-        development: "development";
-        production: "production";
-        test: "test";
-    }>>;
-    DATABASE_URL: z.ZodString;
-    BETTER_AUTH_SECRET: z.ZodString;
-    BETTER_AUTH_URL: z.ZodString;
-}, z.core.$strip>;
-type Env = z.infer<typeof envSchema>;
-declare function validateEnv(): Env;
-
-declare global {
-    var prisma: PrismaClient | undefined;
+interface HonoAdapterOptions {
+    /**
+     * Enable logger middleware.
+     * @default true
+     */
+    logger?: boolean;
+    /**
+     * Enable security middleware.
+     * @default true
+     */
+    security?: boolean;
+    /**
+     * Enable authentication middleware.
+     * @default false
+     */
+    auth?: boolean;
 }
-declare const prisma: PrismaClient<_prisma_client.Prisma.PrismaClientOptions, never, _prisma_client_runtime_library.DefaultArgs>;
 
-interface ValidationResult<T> {
-    success: boolean;
-    data?: T;
-    errors?: string[];
+declare class HonoAdapter {
+    private readonly options;
+    constructor(options?: HonoAdapterOptions);
+    /**
+     * Adapter configuration
+     */
+    get config(): Required<HonoAdapterOptions>;
 }
-declare function validate<T>(schema: ZodType<T>, input: unknown): ValidationResult<T>;
-declare function validateOrThrow<T>(schema: ZodType<T>, input: unknown): T;
+/**
+ * Create a new AVSS Hono adapter.
+ */
+declare function createHono(options?: HonoAdapterOptions): HonoAdapter;
+
+interface AuditUser {
+    id: string;
+    name: string;
+    email?: string;
+    role?: string;
+}
+interface AuditEntry {
+    event: string;
+    user?: AuditUser;
+    message?: string;
+    ip?: string;
+    userAgent?: string;
+    metadata?: Record<string, unknown>;
+    timestamp: Date;
+}
+interface AuditOptions {
+    enabled?: boolean;
+    showTimestamp?: boolean;
+    showUserAgent?: boolean;
+    showIp?: boolean;
+}
+
+declare class Audit {
+    log(entry: AuditEntry): void;
+    login(user: AuditUser): void;
+    logout(user: AuditUser): void;
+    register(user: AuditUser): void;
+    failedLogin(email: string): void;
+    changePassword(user: AuditUser): void;
+    changeRole(user: AuditUser, oldRole: string, newRole: string): void;
+    createUser(user: AuditUser): void;
+    updateUser(user: AuditUser): void;
+    deleteUser(user: AuditUser): void;
+    verifyEmail(user: AuditUser): void;
+    resetPassword(user: AuditUser): void;
+}
+declare const audit: Audit;
+
+declare enum AuditEvent {
+    LOGIN = "LOGIN",
+    LOGOUT = "LOGOUT",
+    REGISTER = "REGISTER",
+    FAILED_LOGIN = "FAILED_LOGIN",
+    CHANGE_PASSWORD = "CHANGE_PASSWORD",
+    CHANGE_ROLE = "CHANGE_ROLE",
+    CREATE_USER = "CREATE_USER",
+    UPDATE_USER = "UPDATE_USER",
+    DELETE_USER = "DELETE_USER",
+    VERIFY_EMAIL = "VERIFY_EMAIL",
+    RESET_PASSWORD = "RESET_PASSWORD"
+}
+
+declare function formatAudit(entry: AuditEntry): string;
 
 interface AVSSPlugin {
     name: string;
@@ -245,59 +298,11 @@ declare const PROVIDERS: {
 declare const PROVIDERS_FRAMEWORK = "AVSS Providers";
 declare const PROVIDERS_VERSION = "v1.0.0";
 
-interface AuditUser {
-    id: string;
-    name: string;
-    email?: string;
-    role?: string;
-}
-interface AuditEntry {
-    event: string;
-    user?: AuditUser;
-    message?: string;
-    ip?: string;
-    userAgent?: string;
-    metadata?: Record<string, unknown>;
-    timestamp: Date;
-}
-interface AuditOptions {
-    enabled?: boolean;
-    showTimestamp?: boolean;
-    showUserAgent?: boolean;
-    showIp?: boolean;
-}
-
-declare class Audit {
-    log(entry: AuditEntry): void;
-    login(user: AuditUser): void;
-    logout(user: AuditUser): void;
-    register(user: AuditUser): void;
-    failedLogin(email: string): void;
-    changePassword(user: AuditUser): void;
-    changeRole(user: AuditUser, oldRole: string, newRole: string): void;
-    createUser(user: AuditUser): void;
-    updateUser(user: AuditUser): void;
-    deleteUser(user: AuditUser): void;
-    verifyEmail(user: AuditUser): void;
-    resetPassword(user: AuditUser): void;
-}
-declare const audit: Audit;
-
-declare enum AuditEvent {
-    LOGIN = "LOGIN",
-    LOGOUT = "LOGOUT",
-    REGISTER = "REGISTER",
-    FAILED_LOGIN = "FAILED_LOGIN",
-    CHANGE_PASSWORD = "CHANGE_PASSWORD",
-    CHANGE_ROLE = "CHANGE_ROLE",
-    CREATE_USER = "CREATE_USER",
-    UPDATE_USER = "UPDATE_USER",
-    DELETE_USER = "DELETE_USER",
-    VERIFY_EMAIL = "VERIFY_EMAIL",
-    RESET_PASSWORD = "RESET_PASSWORD"
-}
-
-declare function formatAudit(entry: AuditEntry): string;
+declare const corsMiddleware: (req: cors.CorsRequest, res: {
+    statusCode?: number | undefined;
+    setHeader(key: string, value: string): any;
+    end(): any;
+}, next: (err?: any) => any) => void;
 
 interface CheckResult {
     name: string;
@@ -309,6 +314,19 @@ declare class Doctor {
     render(): void;
 }
 declare const doctor: Doctor;
+
+declare const envSchema: z.ZodObject<{
+    NODE_ENV: z.ZodDefault<z.ZodEnum<{
+        development: "development";
+        production: "production";
+        test: "test";
+    }>>;
+    DATABASE_URL: z.ZodString;
+    BETTER_AUTH_SECRET: z.ZodString;
+    BETTER_AUTH_URL: z.ZodString;
+}, z.core.$strip>;
+type Env = z.infer<typeof envSchema>;
+declare function validateEnv(): Env;
 
 declare enum ErrorCode {
     UNAUTHORIZED = "UNAUTHORIZED",
@@ -435,6 +453,11 @@ declare function logRequest(req: RequestLog): void;
 declare function showBanner(): void;
 
 declare function rotateLogs(): void;
+
+declare global {
+    var prisma: PrismaClient | undefined;
+}
+declare const prisma: PrismaClient<_prisma_client.Prisma.PrismaClientOptions, never, _prisma_client_runtime_library.DefaultArgs>;
 
 interface CsrfConfig {
     /**
@@ -750,4 +773,12 @@ declare class Timer {
 
 declare function tree(title: string, items: string[]): void;
 
-export { AVSSError, type AVSSPlugin, type AppleProvider, type AppleProviderConfig, Audit, type AuditEntry, AuditEvent, type AuditOptions, type AuditUser, type AuthAdapter, type AuthConfig, type AuthProvider, type BaseProvider, type CheckResult, type ClientInfo, Colors, type CookieConfig, type CookieMap, type CorsConfig, type CorsHeaders, type CredentialsProvider, type CredentialsProviderConfig, type CsrfConfig, type CsrfRequest, type CsrfResult, DEFAULT_CONTENT_TYPE, DEFAULT_CONTENT_TYPE_OPTIONS, DEFAULT_COOKIE_NAME, DEFAULT_CSRF_COOKIE, DEFAULT_CSRF_HEADER, DEFAULT_FRAME_OPTIONS, DEFAULT_PERMISSIONS_POLICY, DEFAULT_RATE_LIMIT, DEFAULT_RATE_WINDOW, DEFAULT_REFERRER_POLICY, DEFAULT_ROLE, DEFAULT_SECURITY_HEADERS, DEFAULT_TOKEN_LENGTH, type DiscordProvider, type DiscordProviderConfig, Doctor, type Env, ErrorCode, type ErrorResponse, EventEmitter, type EventListener, type EventMap, type EventName, type FailedLoginEvent, type FooterOptions, ForbiddenError, type GithubProvider, type GithubProviderConfig, type GitlabProvider, type GitlabProviderConfig, type GoogleProvider, type GoogleProviderConfig, type HeaderConfig, InternalServerError, Logger, type LoginEvent, type LogoutEvent, MemoryStore, type MicrosoftProvider, type MicrosoftProviderConfig, type MiddlewareResult, type MiddlewareUser, type OAuthProviderConfig, PROVIDERS, PROVIDERS_FRAMEWORK, PROVIDERS_VERSION, PROVIDER_VERSION, ProviderManager, type ProxyConfig, type ProxyHeaders, type ProxyInfo, type RateLimitConfig, type RateLimitEntry, type RateLimitResult$1 as RateLimitResult, RateLimiter, type RateLimiterOptions, type RegisterEvent, type RequestLog, Role, SECURITY_NAME, SECURITY_VERSION, type SecurityConfig, SecurityFramework, type SecurityHeaders, SecurityHeadersBuilder, type SecurityModule, type SecurityResult, type Session, SessionExpiredError, type SessionUser, Spinner, Symbols, Timer, UnauthorizedError, ValidationError, type ValidationResult, type XssConfig, audit, auditPlugin, authMiddleware, banner, box, corsMiddleware, createAdapter, createAppleProvider, createAuth, createCorsHeaders, createCredentialsProvider, createDiscordProvider, createGithubProvider, createGitlabProvider, createGoogleProvider, createMicrosoftProvider, createSecurity, csrfMiddleware, defaultCookieConfig, defaultCorsConfig, defaultCsrfConfig, defaultHeaderConfig, defaultProxyConfig, defaultRateLimitConfig, defaultXssConfig, divider, doctor, endTimer, error, errorHandler, escapeHtml, events, fail, footer, formatAudit, generateCsrfToken, generatePassword, getConfig, getProxyInfo, getRemainingTime, getSecurityConfig, guestMiddleware, hasAnyRole, hasRole, hashPassword, header, info, isAdmin, isModerator, isSessionExpired, isSuperAdmin, isTrustedProxy, isUser, logRequest, logger, loggerPlugin, needsRehash, output, parseCookies, pass, prisma, progress, providerManager, rateLimit, resetSecurityConfig, roleMiddleware, rotateLogs, sanitize, section, serializeCookie, setConfig, setSecurityConfig, showBanner, startTimer, success, table, tree, validate, validateCsrfToken, validateEnv, validateOrThrow, verifyPassword, warning };
+interface ValidationResult<T> {
+    success: boolean;
+    data?: T;
+    errors?: string[];
+}
+declare function validate<T>(schema: ZodType<T>, input: unknown): ValidationResult<T>;
+declare function validateOrThrow<T>(schema: ZodType<T>, input: unknown): T;
+
+export { AVSSError, type AVSSPlugin, type AppleProvider, type AppleProviderConfig, Audit, type AuditEntry, AuditEvent, type AuditOptions, type AuditUser, type AuthAdapter, type AuthConfig, type AuthProvider, type BaseProvider, type CheckResult, type ClientInfo, Colors, type CookieConfig, type CookieMap, type CorsConfig, type CorsHeaders, type CredentialsProvider, type CredentialsProviderConfig, type CsrfConfig, type CsrfRequest, type CsrfResult, DEFAULT_CONTENT_TYPE, DEFAULT_CONTENT_TYPE_OPTIONS, DEFAULT_COOKIE_NAME, DEFAULT_CSRF_COOKIE, DEFAULT_CSRF_HEADER, DEFAULT_FRAME_OPTIONS, DEFAULT_PERMISSIONS_POLICY, DEFAULT_RATE_LIMIT, DEFAULT_RATE_WINDOW, DEFAULT_REFERRER_POLICY, DEFAULT_ROLE, DEFAULT_SECURITY_HEADERS, DEFAULT_TOKEN_LENGTH, type DiscordProvider, type DiscordProviderConfig, Doctor, type Env, ErrorCode, type ErrorResponse, EventEmitter, type EventListener, type EventMap, type EventName, type FailedLoginEvent, type FooterOptions, ForbiddenError, type GithubProvider, type GithubProviderConfig, type GitlabProvider, type GitlabProviderConfig, type GoogleProvider, type GoogleProviderConfig, type HeaderConfig, HonoAdapter, type HonoAdapterOptions, InternalServerError, Logger, type LoginEvent, type LogoutEvent, MemoryStore, type MicrosoftProvider, type MicrosoftProviderConfig, type MiddlewareResult, type MiddlewareUser, type OAuthProviderConfig, PROVIDERS, PROVIDERS_FRAMEWORK, PROVIDERS_VERSION, PROVIDER_VERSION, ProviderManager, type ProxyConfig, type ProxyHeaders, type ProxyInfo, type RateLimitConfig, type RateLimitEntry, type RateLimitResult$1 as RateLimitResult, RateLimiter, type RateLimiterOptions, type RegisterEvent, type RequestLog, Role, SECURITY_NAME, SECURITY_VERSION, type SecurityConfig, SecurityFramework, type SecurityHeaders, SecurityHeadersBuilder, type SecurityModule, type SecurityResult, type Session, SessionExpiredError, type SessionUser, Spinner, Symbols, Timer, UnauthorizedError, ValidationError, type ValidationResult, type XssConfig, audit, auditPlugin, authMiddleware, banner, box, corsMiddleware, createAdapter, createAppleProvider, createAuth, createCorsHeaders, createCredentialsProvider, createDiscordProvider, createGithubProvider, createGitlabProvider, createGoogleProvider, createHono, createMicrosoftProvider, createSecurity, csrfMiddleware, defaultCookieConfig, defaultCorsConfig, defaultCsrfConfig, defaultHeaderConfig, defaultProxyConfig, defaultRateLimitConfig, defaultXssConfig, divider, doctor, endTimer, error, errorHandler, escapeHtml, events, fail, footer, formatAudit, generateCsrfToken, generatePassword, getConfig, getProxyInfo, getRemainingTime, getSecurityConfig, guestMiddleware, hasAnyRole, hasRole, hashPassword, header, info, isAdmin, isModerator, isSessionExpired, isSuperAdmin, isTrustedProxy, isUser, logRequest, logger, loggerPlugin, needsRehash, output, parseCookies, pass, prisma, progress, providerManager, rateLimit, resetSecurityConfig, roleMiddleware, rotateLogs, sanitize, section, serializeCookie, setConfig, setSecurityConfig, showBanner, startTimer, success, table, tree, validate, validateCsrfToken, validateEnv, validateOrThrow, verifyPassword, warning };
