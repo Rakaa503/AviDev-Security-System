@@ -1,0 +1,7143 @@
+========================================
+ AVSS LITE - PROJECT CONTEXT
+========================================
+ROOT: C:\Users\ASUS\docs\AVSS-Lite
+
+PROJECT STRUCTURE:
+Folder PATH listing
+Volume serial number is FE5D-42C7
+C:\USERS\ASUS\DOCS\AVSS-LITE\SRC
+ª   .env.example
+ª   debug.ts
+ª   dev.ts
+ª   index.ts
+ª   test-adapter.ts
+ª   test-auth.ts
+ª   test-better-auth.ts
+ª   test-config.ts
+ª   test-cors.ts
+ª   test-env.ts
+ª   test-errors.ts
+ª   test-headers.ts
+ª   test-logger.ts
+ª   test-password.ts
+ª   test-plugin.ts
+ª   test-proxy.ts
+ª   test-rate-limit.ts
+ª   test-roles.ts
+ª   test-security.ts
+ª   test-session.ts
+ª   test-validation.ts
+ª   test.ts
+ª   
++---adapters
+ª   ª   index.ts
+ª   ª   
+ª   +---hono
+ª           hono.ts
+ª           index.ts
+ª           types.ts
+ª           
++---audit
+ª       audit.ts
+ª       events.ts
+ª       formatter.ts
+ª       index.ts
+ª       test-audit.ts
+ª       types.ts
+ª       
++---auth
+ª   ª   adapter.ts
+ª   ª   auth.ts
+ª   ª   config.ts
+ª   ª   index.ts
+ª   ª   middleware.ts
+ª   ª   password.ts
+ª   ª   roles.ts
+ª   ª   session.ts
+ª   ª   
+ª   +---cache
+ª   ª       adapter.ts
+ª   ª       cache-manager.ts
+ª   ª       constants.ts
+ª   ª       index.ts
+ª   ª       memory-cache.ts
+ª   ª       redis-cache.ts
+ª   ª       test-cache.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---guards
+ª   ª       auth.ts
+ª   ª       constants.ts
+ª   ª       index.ts
+ª   ª       middleware.ts
+ª   ª       permission.ts
+ª   ª       role.ts
+ª   ª       test-guards.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---hooks
+ª   ª       after-signin.ts
+ª   ª       after-signout.ts
+ª   ª       after-signup.ts
+ª   ª       before-signin.ts
+ª   ª       before-signout.ts
+ª   ª       before-signup.ts
+ª   ª       constants.ts
+ª   ª       hook-manager.ts
+ª   ª       index.ts
+ª   ª       test-hooks.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---jwt
+ª   ª       adapter.ts
+ª   ª       claims.ts
+ª   ª       constants.ts
+ª   ª       index.ts
+ª   ª       jwt-builder.ts
+ª   ª       jwt-manager.ts
+ª   ª       jwt-parser.ts
+ª   ª       jwt-verifier.ts
+ª   ª       memory-jwt.ts
+ª   ª       test-jwt.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---oauth
+ª   ª       callback.ts
+ª   ª       constants.ts
+ª   ª       index.ts
+ª   ª       nonce.ts
+ª   ª       oauth.ts
+ª   ª       pkce.ts
+ª   ª       redirect.ts
+ª   ª       state.ts
+ª   ª       test-oauth.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---providers
+ª   ª       apple.ts
+ª   ª       constants.ts
+ª   ª       constants.ts.ts
+ª   ª       credentials.ts
+ª   ª       discord.ts
+ª   ª       github.ts
+ª   ª       gitlab.ts
+ª   ª       google.ts
+ª   ª       index.ts
+ª   ª       manager.ts
+ª   ª       microsoft.ts
+ª   ª       test-providers.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---session
+ª   ª       adapter.ts
+ª   ª       constants.ts
+ª   ª       index.ts
+ª   ª       memory-session.ts
+ª   ª       session-manager.ts
+ª   ª       session-store.ts
+ª   ª       test-session.ts
+ª   ª       types.ts
+ª   ª       version.ts
+ª   ª       
+ª   +---webhooks
++---cors
+ª       cors.ts
+ª       index.ts
+ª       
++---doctor
+ª       doctor.ts
+ª       index.ts
+ª       test-doctor.ts
+ª       
++---env
+ª       env.ts
+ª       index.ts
+ª       
++---errors
+ª       base.ts
+ª       codes.ts
+ª       forbidden.ts
+ª       handler.ts
+ª       index.ts
+ª       internal.ts
+ª       session-expired.ts
+ª       unauthorized.ts
+ª       validation.ts
+ª       
++---events
+ª       emitter.ts
+ª       events.ts
+ª       index.ts
+ª       listener.ts
+ª       test-events.ts
+ª       
++---logger
+ª       banner.ts
+ª       colors.ts
+ª       config.ts
+ª       console.ts
+ª       constants.ts
+ª       file.ts
+ª       formatter.ts
+ª       helpers.ts
+ª       index.ts
+ª       level.ts
+ª       logger.ts
+ª       request.ts
+ª       rotation.ts
+ª       timer.ts
+ª       types.ts
+ª       writer.ts
+ª       
++---plugins
+ª       audit.ts
+ª       index.ts
+ª       logger.ts
+ª       plugin.ts
+ª       
++---prisma
+ª       index.ts
+ª       prisma.ts
+ª       
++---security
+ª   ª   config.ts
+ª   ª   constants.ts
+ª   ª   index.ts
+ª   ª   security.ts
+ª   ª   test-security.ts
+ª   ª   types.ts
+ª   ª   version.ts
+ª   ª   
+ª   +---cookies
+ª   ª       config.ts
+ª   ª       index.ts
+ª   ª       parser.ts
+ª   ª       
+ª   +---cors
+ª   ª       config.ts
+ª   ª       index.ts
+ª   ª       middleware.ts
+ª   ª       
+ª   +---csrf
+ª   ª       config.ts
+ª   ª       index.ts
+ª   ª       middleware.ts
+ª   ª       token.ts
+ª   ª       
+ª   +---headers
+ª   ª       builder.ts
+ª   ª       config.ts
+ª   ª       defaults.ts
+ª   ª       index.ts
+ª   ª       
+ª   +---proxy
+ª   ª       config.ts
+ª   ª       index.ts
+ª   ª       trusted.ts
+ª   ª       
+ª   +---rate-limit
+ª   ª       config.ts
+ª   ª       index.ts
+ª   ª       memory.ts
+ª   ª       middleware.ts
+ª   ª       
+ª   +---xss
+ª           config.ts
+ª           escape.ts
+ª           index.ts
+ª           sanitizer.ts
+ª           
++---terminal
+ª       banner.ts
+ª       box.ts
+ª       colors.ts
+ª       divider.ts
+ª       footer.ts
+ª       header.ts
+ª       index.ts
+ª       output.ts
+ª       progress.ts
+ª       section.ts
+ª       spinner.ts
+ª       status.ts
+ª       symbols.ts
+ª       table.ts
+ª       test.terminal.ts
+ª       timer.ts
+ª       tree.ts
+ª       types.ts
+ª       utils.ts
+ª       version.ts
+ª       
++---utils
+ª       logger.ts
+ª       
++---validation
+        index.ts
+        validation.ts
+        
+
+
+================================================================================
+FILE: package.json
+================================================================================
+{
+  "name": "avss-lite-Raka503",
+  "version": "1.0.2",
+  "description": "AVSS Lite - Security Toolkit",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "check": "tsc --noEmit",
+    "generate": "prisma generate",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "avidev",
+    "security",
+    "typescript",
+    "backend",
+    "prisma",
+    "better-auth",
+    "zod",
+    "argon2"
+  ],
+  "author": "AVIDEV Studio",
+  "license": "MIT",
+  "dependencies": {
+    "@better-auth/prisma-adapter": "^1.6.23",
+    "@prisma/client": "^6.16.2",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "argon2": "^0.44.0",
+    "better-auth": "^1.6.23",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "cli-table3": "^0.6.5",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "helmet": "^8.2.0",
+    "hono": "^4.12.28",
+    "next": "^16.2.10",
+    "ora": "^9.4.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/coverage-v8": "^4.1.9",
+    "bun-types": "^1.4.4",
+    "eslint-config-next": "^16.2.10",
+    "prisma": "^6.16.2",
+    "rimraf": "^6.1.3",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.9"
+  }
+}
+
+
+================================================================================
+FILE: src\adapters\hono\hono.ts
+================================================================================
+import type { HonoAdapterOptions } from "./types";
+
+export class HonoAdapter {
+  private readonly options: Required<HonoAdapterOptions>;
+
+  constructor(options: HonoAdapterOptions = {}) {
+    this.options = {
+      logger: options.logger ?? true,
+      security: options.security ?? true,
+      auth: options.auth ?? false,
+    };
+  }
+
+  /**
+   * Adapter configuration
+   */
+  get config(): Required<HonoAdapterOptions> {
+    return this.options;
+  }
+}
+
+/**
+ * Create a new AVSS Hono adapter.
+ */
+export function createHono(
+  options?: HonoAdapterOptions,
+): HonoAdapter {
+  return new HonoAdapter(options);
+}
+
+================================================================================
+FILE: src\adapters\hono\index.ts
+================================================================================
+export * from "./hono";
+export * from "./types";
+
+================================================================================
+FILE: src\adapters\hono\types.ts
+================================================================================
+export interface HonoAdapterOptions {
+  /**
+   * Enable logger middleware.
+   * @default true
+   */
+  logger?: boolean;
+
+  /**
+   * Enable security middleware.
+   * @default true
+   */
+  security?: boolean;
+
+  /**
+   * Enable authentication middleware.
+   * @default false
+   */
+  auth?: boolean;
+}
+
+================================================================================
+FILE: src\adapters\index.ts
+================================================================================
+export * from "./hono";
+
+================================================================================
+FILE: src\audit\audit.ts
+================================================================================
+import { AuditEvent } from "./events";
+import { formatAudit } from "./formatter";
+import type { AuditEntry, AuditUser } from "./types";
+
+export class Audit {
+  log(entry: AuditEntry): void {
+    console.log(formatAudit(entry));
+  }
+
+  login(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.LOGIN,
+      user,
+      message: "Login Success",
+      timestamp: new Date(),
+    });
+  }
+
+  logout(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.LOGOUT,
+      user,
+      message: "Logout Success",
+      timestamp: new Date(),
+    });
+  }
+
+  register(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.REGISTER,
+      user,
+      message: "Account Registered",
+      timestamp: new Date(),
+    });
+  }
+
+  failedLogin(email: string): void {
+    this.log({
+      event: AuditEvent.FAILED_LOGIN,
+      message: `Failed Login (${email})`,
+      timestamp: new Date(),
+    });
+  }
+
+  changePassword(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.CHANGE_PASSWORD,
+      user,
+      message: "Password Changed",
+      timestamp: new Date(),
+    });
+  }
+
+  changeRole(
+    user: AuditUser,
+    oldRole: string,
+    newRole: string
+  ): void {
+    this.log({
+      event: AuditEvent.CHANGE_ROLE,
+      user,
+      message: `${oldRole} ➜ ${newRole}`,
+      timestamp: new Date(),
+    });
+  }
+
+  createUser(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.CREATE_USER,
+      user,
+      message: "User Created",
+      timestamp: new Date(),
+    });
+  }
+
+  updateUser(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.UPDATE_USER,
+      user,
+      message: "User Updated",
+      timestamp: new Date(),
+    });
+  }
+
+  deleteUser(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.DELETE_USER,
+      user,
+      message: "User Deleted",
+      timestamp: new Date(),
+    });
+  }
+
+  verifyEmail(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.VERIFY_EMAIL,
+      user,
+      message: "Email Verified",
+      timestamp: new Date(),
+    });
+  }
+
+  resetPassword(user: AuditUser): void {
+    this.log({
+      event: AuditEvent.RESET_PASSWORD,
+      user,
+      message: "Password Reset",
+      timestamp: new Date(),
+    });
+  }
+}
+
+export const audit = new Audit();
+
+================================================================================
+FILE: src\audit\events.ts
+================================================================================
+export enum AuditEvent {
+  LOGIN = "LOGIN",
+  LOGOUT = "LOGOUT",
+  REGISTER = "REGISTER",
+  FAILED_LOGIN = "FAILED_LOGIN",
+  CHANGE_PASSWORD = "CHANGE_PASSWORD",
+  CHANGE_ROLE = "CHANGE_ROLE",
+  CREATE_USER = "CREATE_USER",
+  UPDATE_USER = "UPDATE_USER",
+  DELETE_USER = "DELETE_USER",
+  VERIFY_EMAIL = "VERIFY_EMAIL",
+  RESET_PASSWORD = "RESET_PASSWORD",
+}
+
+================================================================================
+FILE: src\audit\formatter.ts
+================================================================================
+import type { AuditEntry } from "./types";
+
+export function formatAudit(entry: AuditEntry): string {
+  const lines: string[] = [];
+
+  lines.push("══════════════════════════════════════");
+  lines.push(`📋 ${entry.event}`);
+  lines.push("");
+
+  if (entry.user) {
+    lines.push(`👤 User  : ${entry.user.name}`);
+    lines.push(`🆔 ID    : ${entry.user.id}`);
+
+    if (entry.user.email) {
+      lines.push(`📧 Email : ${entry.user.email}`);
+    }
+
+    if (entry.user.role) {
+      lines.push(`🛡️ Role  : ${entry.user.role}`);
+    }
+  }
+
+  if (entry.ip) {
+    lines.push(`🌐 IP    : ${entry.ip}`);
+  }
+
+  if (entry.userAgent) {
+    lines.push(`💻 Agent : ${entry.userAgent}`);
+  }
+
+  if (entry.message) {
+    lines.push(`📝 Note  : ${entry.message}`);
+  }
+
+  lines.push(
+    `🕒 Time  : ${entry.timestamp.toLocaleString()}`
+  );
+
+  lines.push("══════════════════════════════════════");
+
+  return lines.join("\n");
+}
+
+================================================================================
+FILE: src\audit\index.ts
+================================================================================
+export * from "./audit";
+export * from "./events";
+export * from "./formatter";
+export * from "./types";
+
+================================================================================
+FILE: src\audit\test-audit.ts
+================================================================================
+import { audit } from "./audit";
+
+const user = {
+  id: "1",
+  name: "Raka",
+  email: "admin@gmail.com",
+  role: "ADMIN",
+};
+
+console.log("========== AUDIT FRAMEWORK ==========\n");
+
+audit.login(user);
+
+audit.logout(user);
+
+audit.register(user);
+
+audit.failedLogin("admin@gmail.com");
+
+audit.changePassword(user);
+
+audit.changeRole(user, "USER", "ADMIN");
+
+audit.createUser(user);
+
+audit.updateUser(user);
+
+audit.deleteUser(user);
+
+audit.verifyEmail(user);
+
+audit.resetPassword(user);
+
+console.log("\n✅ Audit Framework Loaded");
+
+================================================================================
+FILE: src\audit\types.ts
+================================================================================
+export interface AuditUser {
+  id: string;
+  name: string;
+  email?: string;
+  role?: string;
+}
+
+export interface AuditEntry {
+  event: string;
+  user?: AuditUser;
+  message?: string;
+  ip?: string;
+  userAgent?: string;
+  metadata?: Record<string, unknown>;
+  timestamp: Date;
+}
+
+export interface AuditOptions {
+  enabled?: boolean;
+  showTimestamp?: boolean;
+  showUserAgent?: boolean;
+  showIp?: boolean;
+}
+
+================================================================================
+FILE: src\auth\adapter.ts
+================================================================================
+import type { PrismaClient } from "@prisma/client";
+
+export interface AuthAdapter {
+  prisma: PrismaClient;
+}
+
+export function createAdapter(
+  prisma: PrismaClient
+): AuthAdapter {
+  return {
+    prisma,
+  };
+}
+
+================================================================================
+FILE: src\auth\auth.ts
+================================================================================
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+
+import type { AuthConfig } from "./config";
+import { setConfig } from "./config";
+
+export function createAuth(config: AuthConfig) {
+  // Simpan config
+  setConfig(config);
+
+  // Jalankan plugin
+  config.plugins?.forEach((plugin) => {
+    plugin.setup();
+  });
+
+  return betterAuth({
+    database: prismaAdapter(config.prisma, {
+      provider: "postgresql",
+    }),
+  });
+}
+
+================================================================================
+FILE: src\auth\cache\adapter.ts
+================================================================================
+export interface CacheAdapter {
+  get<T>(key: string): T | undefined;
+
+  set<T>(
+    key: string,
+    value: T,
+    ttl?: number,
+  ): void;
+
+  has(key: string): boolean;
+
+  delete(key: string): boolean;
+
+  clear(): void;
+
+  keys(): string[];
+
+  size(): number;
+}
+
+================================================================================
+FILE: src\auth\cache\cache-manager.ts
+================================================================================
+import type { CacheAdapter } from "./adapter";
+import type { CacheStats } from "./types";
+
+export class CacheManager {
+  constructor(
+    private readonly adapter: CacheAdapter,
+  ) {}
+
+  set<T>(
+    key: string,
+    value: T,
+    ttl?: number,
+  ): void {
+    this.adapter.set(key, value, ttl);
+  }
+
+  get<T>(
+    key: string,
+  ): T | undefined {
+    return this.adapter.get<T>(key);
+  }
+
+  has(
+    key: string,
+  ): boolean {
+    return this.adapter.has(key);
+  }
+
+  delete(
+    key: string,
+  ): boolean {
+    return this.adapter.delete(key);
+  }
+
+  clear(): void {
+    this.adapter.clear();
+  }
+
+  keys(): string[] {
+    return this.adapter.keys();
+  }
+
+  size(): number {
+    return this.adapter.size();
+  }
+
+  stats(): CacheStats {
+    return {
+      keys: this.size(),
+    };
+  }
+
+  cleanup(): void {
+    for (const key of this.keys()) {
+      this.get(key);
+    }
+  }
+}
+
+export function createCache(
+  adapter: CacheAdapter,
+): CacheManager {
+  return new CacheManager(adapter);
+}
+
+================================================================================
+FILE: src\auth\cache\constants.ts
+================================================================================
+export const CACHE_NAME = "AVSS Cache";
+
+export const CACHE_VERSION = "1.0.0";
+
+export const DEFAULT_TTL = 1000 * 60 * 5;
+
+export const CACHE_MESSAGES = {
+  SET: "Cache stored.",
+  GET: "Cache retrieved.",
+  HIT: "Cache hit.",
+  MISS: "Cache miss.",
+  DELETE: "Cache deleted.",
+  CLEAR: "Cache cleared.",
+  EXPIRED: "Cache expired.",
+} as const;
+
+export const CACHE_DRIVERS = {
+  MEMORY: "memory",
+  REDIS: "redis",
+} as const;
+
+================================================================================
+FILE: src\auth\cache\index.ts
+================================================================================
+export * from "./adapter";
+export * from "./cache-manager";
+export * from "./memory-cache";
+export * from "./redis-cache";
+
+export * from "./constants";
+export * from "./types";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\cache\memory-cache.ts
+================================================================================
+import type {
+  CacheAdapter,
+} from "./adapter";
+
+interface CacheEntry<T = unknown> {
+  value: T;
+  expiresAt?: number;
+}
+
+export class MemoryCache implements CacheAdapter {
+  private readonly storage = new Map<
+    string,
+    CacheEntry
+  >();
+
+  set<T>(
+    key: string,
+    value: T,
+    ttl?: number,
+  ): void {
+    this.storage.set(key, {
+      value,
+      expiresAt: ttl
+        ? Date.now() + ttl
+        : undefined,
+    });
+  }
+
+  get<T>(
+    key: string,
+  ): T | undefined {
+    const entry = this.storage.get(key);
+
+    if (!entry) {
+      return undefined;
+    }
+
+    if (
+      entry.expiresAt !== undefined &&
+      Date.now() > entry.expiresAt
+    ) {
+      this.storage.delete(key);
+      return undefined;
+    }
+
+    return entry.value as T;
+  }
+
+  has(
+    key: string,
+  ): boolean {
+    return this.get(key) !== undefined;
+  }
+
+  delete(
+    key: string,
+  ): boolean {
+    return this.storage.delete(key);
+  }
+
+  clear(): void {
+    this.storage.clear();
+  }
+
+  keys(): string[] {
+    this.cleanup();
+
+    return [...this.storage.keys()];
+  }
+
+  size(): number {
+    this.cleanup();
+
+    return this.storage.size;
+  }
+
+  cleanup(): void {
+    const now = Date.now();
+
+    for (const [key, value] of this.storage) {
+      if (
+        value.expiresAt !== undefined &&
+        now > value.expiresAt
+      ) {
+        this.storage.delete(key);
+      }
+    }
+  }
+}
+
+================================================================================
+FILE: src\auth\cache\redis-cache.ts
+================================================================================
+import type {
+  CacheAdapter,
+} from "./adapter";
+
+export class RedisCache
+  implements CacheAdapter
+{
+  get<T>(): T | undefined {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  set<T>(): void {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  has(): boolean {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  delete(): boolean {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  clear(): void {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  keys(): string[] {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+
+  size(): number {
+    throw new Error(
+      "Redis adapter not implemented.",
+    );
+  }
+}
+
+================================================================================
+FILE: src\auth\cache\test-cache.ts
+================================================================================
+import {
+  MemoryCache,
+  createCache,
+} from "./index";
+
+async function main(): Promise<void> {
+  console.clear();
+
+  console.log("========================================");
+  console.log("         AVSS CACHE FRAMEWORK");
+  console.log("========================================\n");
+
+  const cache = createCache(
+    new MemoryCache(),
+  );
+
+  console.log("Driver : Memory");
+
+  console.log("\n----------------------------------------\n");
+
+  // SET
+  cache.set("framework", "AVSS Lite");
+
+  console.log(
+    "✔ Set Cache        :",
+    cache.get("framework"),
+  );
+
+  // GET
+  console.log(
+    "✔ Get Cache        :",
+    cache.get("framework"),
+  );
+
+  // HAS
+  console.log(
+    "✔ Has Cache        :",
+    cache.has("framework"),
+  );
+
+  // KEYS
+  console.log(
+    "✔ Keys             :",
+    cache.keys(),
+  );
+
+  // STATS
+  console.log(
+    "✔ Stats            :",
+    cache.stats(),
+  );
+
+  // TTL TEST
+  cache.set(
+    "temporary",
+    "Expired",
+    1000,
+  );
+
+  console.log(
+    "✔ TTL Cache        :",
+    cache.get("temporary"),
+  );
+
+  await new Promise((resolve) =>
+    setTimeout(resolve, 1200),
+  );
+
+  console.log(
+    "✔ TTL Expired      :",
+    cache.get("temporary"),
+  );
+
+  // DELETE
+  cache.delete("framework");
+
+  console.log(
+    "✔ Delete Cache     :",
+    !cache.has("framework"),
+  );
+
+  // CLEAR
+  cache.set("user", "admin");
+  cache.set("token", "123456");
+
+  cache.clear();
+
+  console.log(
+    "✔ Clear Cache      :",
+    cache.size() === 0,
+  );
+
+  console.log("\n----------------------------------------");
+
+  console.log(
+    "Driver : Memory",
+  );
+
+  console.log(
+    "Total Keys :",
+    cache.size(),
+  );
+
+  console.log(
+    "Stats :",
+    cache.stats(),
+  );
+
+  console.log("\n========================================");
+  console.log("      CACHE TEST COMPLETED");
+  console.log("========================================");
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\auth\cache\types.ts
+================================================================================
+export interface CacheEntry<T = unknown> {
+  value: T;
+  expiresAt?: number;
+}
+
+export interface CacheOptions {
+  ttl?: number;
+}
+
+export interface CacheStats {
+  keys: number;
+}
+
+export interface CacheResult<T = unknown> {
+  success: boolean;
+  value?: T;
+}
+
+export interface CacheDriver {
+  name: string;
+  version: string;
+}
+
+================================================================================
+FILE: src\auth\cache\version.ts
+================================================================================
+export const CACHE_FRAMEWORK = "AVSS Cache";
+
+export const CACHE_FRAMEWORK_VERSION = "1.0.0";
+
+================================================================================
+FILE: src\auth\config.ts
+================================================================================
+import type { PrismaClient } from "@prisma/client";
+import type { AVSSPlugin } from "../plugins";
+
+export interface AuthConfig {
+  /**
+   * Prisma Client
+   */
+  prisma: PrismaClient;
+
+  /**
+   * Optional plugins
+   */
+  plugins?: AVSSPlugin[];
+}
+
+let currentConfig: AuthConfig | null = null;
+
+/**
+ * Simpan konfigurasi auth
+ */
+export function setConfig(config: AuthConfig): void {
+  currentConfig = config;
+}
+
+/**
+ * Ambil konfigurasi auth
+ */
+export function getConfig(): AuthConfig {
+  if (!currentConfig) {
+    throw new Error(
+      "Auth configuration has not been initialized."
+    );
+  }
+
+  return currentConfig;
+}
+
+================================================================================
+FILE: src\auth\guards\auth.ts
+================================================================================
+import { GUARD_MESSAGES } from "./constants";
+import type {
+  AuthRequest,
+  GuardResult,
+} from "./types";
+
+export function authenticate(
+  request: AuthRequest,
+): GuardResult {
+  const session = request.session;
+
+  if (!session) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.AUTH_REQUIRED,
+    };
+  }
+
+  if (!session.authenticated) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.AUTH_REQUIRED,
+    };
+  }
+
+  return {
+    success: true,
+    message: GUARD_MESSAGES.AUTH_SUCCESS,
+  };
+}
+
+================================================================================
+FILE: src\auth\guards\constants.ts
+================================================================================
+export const GUARDS_VERSION = "1.0.0";
+
+export const GUARD_MESSAGES = {
+  AUTH_REQUIRED: "Authentication required.",
+  AUTH_SUCCESS: "Authenticated.",
+  ROLE_DENIED: "Access denied. Invalid role.",
+  ROLE_SUCCESS: "Role verified.",
+  PERMISSION_DENIED: "Permission denied.",
+  PERMISSION_SUCCESS: "Permission verified.",
+} as const;
+
+================================================================================
+FILE: src\auth\guards\index.ts
+================================================================================
+export * from "./auth";
+export * from "./role";
+export * from "./permission";
+export * from "./middleware";
+
+export * from "./types";
+export * from "./constants";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\guards\middleware.ts
+================================================================================
+import { authenticate } from "./auth";
+import { authorizeRole } from "./role";
+import { authorizePermission } from "./permission";
+
+import type {
+  AuthRequest,
+  GuardResult,
+} from "./types";
+
+export interface GuardMiddlewareOptions {
+  auth?: boolean;
+  roles?: readonly string[];
+  permissions?: readonly string[];
+}
+
+export function guardMiddleware(
+  request: AuthRequest,
+  options: GuardMiddlewareOptions = {},
+): GuardResult {
+  const session = request.session;
+
+  if (options.auth) {
+    const auth = authenticate(request);
+
+    if (!auth.success) {
+      return auth;
+    }
+  }
+
+  if (!session) {
+    return {
+      success: false,
+      message: "Session not found.",
+    };
+  }
+
+  if (options.roles?.length) {
+    const role = authorizeRole(
+      session,
+      options.roles,
+    );
+
+    if (!role.success) {
+      return role;
+    }
+  }
+
+  if (options.permissions?.length) {
+    const permission = authorizePermission(
+      session,
+      options.permissions,
+    );
+
+    if (!permission.success) {
+      return permission;
+    }
+  }
+
+  return {
+    success: true,
+    message: "Guard passed.",
+  };
+}
+
+================================================================================
+FILE: src\auth\guards\permission.ts
+================================================================================
+import { GUARD_MESSAGES } from "./constants";
+import type {
+  AuthSession,
+  GuardResult,
+} from "./types";
+
+export function authorizePermission(
+  session: AuthSession,
+  requiredPermissions: readonly string[],
+): GuardResult {
+  if (!session.authenticated) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.AUTH_REQUIRED,
+    };
+  }
+
+  const permissions = session.permissions ?? [];
+
+  for (const permission of requiredPermissions) {
+    if (!permissions.includes(permission)) {
+      return {
+        success: false,
+        message: `${GUARD_MESSAGES.PERMISSION_DENIED} (${permission})`,
+      };
+    }
+  }
+
+  return {
+    success: true,
+    message: GUARD_MESSAGES.PERMISSION_SUCCESS,
+  };
+}
+
+export function hasPermission(
+  session: AuthSession,
+  permission: string,
+): boolean {
+  return (
+    session.authenticated &&
+    (session.permissions ?? []).includes(permission)
+  );
+}
+
+export function hasAnyPermission(
+  session: AuthSession,
+  permissions: readonly string[],
+): boolean {
+  if (!session.authenticated) {
+    return false;
+  }
+
+  return permissions.some((permission) =>
+    (session.permissions ?? []).includes(permission),
+  );
+}
+
+export function hasAllPermissions(
+  session: AuthSession,
+  permissions: readonly string[],
+): boolean {
+  if (!session.authenticated) {
+    return false;
+  }
+
+  return permissions.every((permission) =>
+    (session.permissions ?? []).includes(permission),
+  );
+}
+
+================================================================================
+FILE: src\auth\guards\role.ts
+================================================================================
+import { GUARD_MESSAGES } from "./constants";
+import type {
+  AuthSession,
+  GuardResult,
+} from "./types";
+
+export function authorizeRole(
+  session: AuthSession,
+  roles: readonly string[],
+): GuardResult {
+  if (!session.authenticated) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.AUTH_REQUIRED,
+    };
+  }
+
+  if (!session.role) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.ROLE_DENIED,
+    };
+  }
+
+  if (!roles.includes(session.role)) {
+    return {
+      success: false,
+      message: GUARD_MESSAGES.ROLE_DENIED,
+    };
+  }
+
+  return {
+    success: true,
+    message: GUARD_MESSAGES.ROLE_SUCCESS,
+  };
+}
+
+================================================================================
+FILE: src\auth\guards\test-guards.ts
+================================================================================
+import {
+  authenticate,
+  authorizeRole,
+  authorizePermission,
+  guardMiddleware,
+} from "./index";
+
+console.clear();
+
+console.log("========================================");
+console.log("        AVSS GUARDS FRAMEWORK");
+console.log("========================================\n");
+
+const session = {
+  userId: "1",
+  email: "admin@avss.dev",
+  authenticated: true,
+  role: "admin",
+  permissions: [
+    "user:create",
+    "user:update",
+    "course:create",
+  ],
+};
+
+const request = {
+  session,
+};
+
+console.log("========== AUTH ==========\n");
+
+console.log(authenticate(request));
+
+console.log("\n========== ROLE ==========\n");
+
+console.log(
+  authorizeRole(session, [
+    "admin",
+    "owner",
+  ]),
+);
+
+console.log(
+  authorizeRole(session, [
+    "guest",
+  ]),
+);
+
+console.log("\n========== PERMISSION ==========\n");
+
+console.log(
+  authorizePermission(session, [
+    "user:create",
+    "course:create",
+  ]),
+);
+
+console.log(
+  authorizePermission(session, [
+    "course:delete",
+  ]),
+);
+
+console.log("\n========== MIDDLEWARE ==========\n");
+
+console.log(
+  guardMiddleware(request, {
+    auth: true,
+    roles: ["admin"],
+    permissions: [
+      "user:create",
+    ],
+  }),
+);
+
+console.log(
+  guardMiddleware(request, {
+    auth: true,
+    roles: ["guest"],
+  }),
+);
+
+console.log("\n========================================");
+console.log("      GUARDS TEST COMPLETED");
+console.log("========================================");
+
+================================================================================
+FILE: src\auth\guards\types.ts
+================================================================================
+export interface AuthSession {
+  userId: string;
+  email: string;
+  role?: string;
+  permissions?: string[];
+  authenticated: boolean;
+}
+
+export interface AuthRequest {
+  session?: AuthSession;
+}
+
+export interface GuardResult {
+  success: boolean;
+  message: string;
+}
+
+export interface AuthGuardOptions {
+  requireAuth?: boolean;
+}
+
+export interface RoleGuardOptions {
+  roles: readonly string[];
+}
+
+export interface PermissionGuardOptions {
+  permissions: readonly string[];
+}
+
+================================================================================
+FILE: src\auth\guards\version.ts
+================================================================================
+export const GUARDS_NAME = "AVSS Guards";
+
+export const GUARDS_FRAMEWORK_VERSION = "v1.0.0";
+
+================================================================================
+FILE: src\auth\hooks\after-signin.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onAfterSignIn(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.AFTER_SIGNIN,
+    handler,
+  );
+}
+
+export function onceAfterSignIn(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.AFTER_SIGNIN,
+    handler,
+  );
+}
+
+export async function emitAfterSignIn(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.AFTER_SIGNIN,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\after-signout.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onAfterSignOut(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.AFTER_SIGNOUT,
+    handler,
+  );
+}
+
+export function onceAfterSignOut(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.AFTER_SIGNOUT,
+    handler,
+  );
+}
+
+export async function emitAfterSignOut(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.AFTER_SIGNOUT,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\after-signup.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onAfterSignUp(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.AFTER_SIGNUP,
+    handler,
+  );
+}
+
+export function onceAfterSignUp(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.AFTER_SIGNUP,
+    handler,
+  );
+}
+
+export async function emitAfterSignUp(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.AFTER_SIGNUP,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\before-signin.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onBeforeSignIn(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.BEFORE_SIGNIN,
+    handler,
+  );
+}
+
+export function onceBeforeSignIn(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.BEFORE_SIGNIN,
+    handler,
+  );
+}
+
+export async function emitBeforeSignIn(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.BEFORE_SIGNIN,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\before-signout.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onBeforeSignOut(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.BEFORE_SIGNOUT,
+    handler,
+  );
+}
+
+export function onceBeforeSignOut(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.BEFORE_SIGNOUT,
+    handler,
+  );
+}
+
+export async function emitBeforeSignOut(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.BEFORE_SIGNOUT,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\before-signup.ts
+================================================================================
+import { hooks } from "./hook-manager";
+import { HOOK_NAMES } from "./constants";
+import type {
+  HookHandler,
+  HookPayload,
+} from "./types";
+
+export function onBeforeSignUp(
+  handler: HookHandler,
+): void {
+  hooks.on(
+    HOOK_NAMES.BEFORE_SIGNUP,
+    handler,
+  );
+}
+
+export function onceBeforeSignUp(
+  handler: HookHandler,
+): void {
+  hooks.once(
+    HOOK_NAMES.BEFORE_SIGNUP,
+    handler,
+  );
+}
+
+export async function emitBeforeSignUp(
+  payload: HookPayload,
+): Promise<void> {
+  await hooks.emit(
+    HOOK_NAMES.BEFORE_SIGNUP,
+    payload,
+  );
+}
+
+================================================================================
+FILE: src\auth\hooks\constants.ts
+================================================================================
+export const HOOKS_VERSION = "1.0.0";
+
+export const HOOK_NAMES = {
+  BEFORE_SIGNIN: "before-signin",
+  AFTER_SIGNIN: "after-signin",
+
+  BEFORE_SIGNUP: "before-signup",
+  AFTER_SIGNUP: "after-signup",
+
+  BEFORE_SIGNOUT: "before-signout",
+  AFTER_SIGNOUT: "after-signout",
+} as const;
+
+export const HOOK_MESSAGES = {
+  REGISTERED: "Hook registered.",
+  EMITTED: "Hook executed.",
+  REMOVED: "Hook removed.",
+  CLEARED: "Hooks cleared.",
+} as const;
+
+================================================================================
+FILE: src\auth\hooks\hook-manager.ts
+================================================================================
+import type {
+  HookHandler,
+  HookName,
+  HookPayload,
+} from "./types";
+
+export class HookManager {
+  private readonly hooks = new Map<
+    HookName,
+    Set<HookHandler>
+  >();
+
+  on(
+    name: HookName,
+    handler: HookHandler,
+  ): void {
+    const handlers =
+      this.hooks.get(name) ??
+      new Set<HookHandler>();
+
+    handlers.add(handler);
+
+    this.hooks.set(name, handlers);
+  }
+
+  once(
+    name: HookName,
+    handler: HookHandler,
+  ): void {
+    const onceHandler: HookHandler = async (
+      payload,
+    ) => {
+      await handler(payload);
+
+      this.off(name, onceHandler);
+    };
+
+    this.on(name, onceHandler);
+  }
+
+  off(
+    name: HookName,
+    handler: HookHandler,
+  ): void {
+    const handlers = this.hooks.get(name);
+
+    if (!handlers) {
+      return;
+    }
+
+    handlers.delete(handler);
+
+    if (handlers.size === 0) {
+      this.hooks.delete(name);
+    }
+  }
+
+  async emit(
+    name: HookName,
+    payload: HookPayload,
+  ): Promise<void> {
+    const handlers = this.hooks.get(name);
+
+    if (!handlers) {
+      return;
+    }
+
+    for (const handler of handlers) {
+      await handler(payload);
+    }
+  }
+
+  clear(
+    name?: HookName,
+  ): void {
+    if (name) {
+      this.hooks.delete(name);
+      return;
+    }
+
+    this.hooks.clear();
+  }
+
+  count(
+    name?: HookName,
+  ): number {
+    if (name) {
+      return this.hooks.get(name)?.size ?? 0;
+    }
+
+    let total = 0;
+
+    for (const handlers of this.hooks.values()) {
+      total += handlers.size;
+    }
+
+    return total;
+  }
+
+  has(
+    name: HookName,
+  ): boolean {
+    return (
+      (this.hooks.get(name)?.size ?? 0) > 0
+    );
+  }
+
+  events(): HookName[] {
+    return [...this.hooks.keys()];
+  }
+}
+
+export const hooks = new HookManager();
+
+================================================================================
+FILE: src\auth\hooks\index.ts
+================================================================================
+export * from "./before-signin";
+export * from "./after-signin";
+
+export * from "./before-signup";
+export * from "./after-signup";
+
+export * from "./before-signout";
+export * from "./after-signout";
+
+export * from "./hook-manager";
+
+export * from "./constants";
+export * from "./types";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\hooks\test-hooks.ts
+================================================================================
+import {
+  hooks,
+  onBeforeSignIn,
+  onAfterSignIn,
+  onBeforeSignUp,
+  onAfterSignUp,
+  onBeforeSignOut,
+  onAfterSignOut,
+  emitBeforeSignIn,
+  emitAfterSignIn,
+  emitBeforeSignUp,
+  emitAfterSignUp,
+  emitBeforeSignOut,
+  emitAfterSignOut,
+} from "./index";
+
+async function main(): Promise<void> {
+  console.clear();
+
+  console.log("========================================");
+  console.log("         AVSS HOOKS FRAMEWORK");
+  console.log("========================================\n");
+
+  hooks.clear();
+
+  onBeforeSignIn(() => {
+    console.log("✔ Before Sign In");
+  });
+
+  onAfterSignIn(() => {
+    console.log("✔ After Sign In");
+  });
+
+  onBeforeSignUp(() => {
+    console.log("✔ Before Sign Up");
+  });
+
+  onAfterSignUp(() => {
+    console.log("✔ After Sign Up");
+  });
+
+  onBeforeSignOut(() => {
+    console.log("✔ Before Sign Out");
+  });
+
+  onAfterSignOut(() => {
+    console.log("✔ After Sign Out");
+  });
+
+  console.log("Registered Hooks :", hooks.count());
+
+  console.log("\n----------------------------------------\n");
+
+  await emitBeforeSignIn({
+    userId: "1",
+    email: "admin@avss.dev",
+  });
+
+  await emitAfterSignIn({
+    userId: "1",
+    email: "admin@avss.dev",
+  });
+
+  await emitBeforeSignUp({
+    userId: "2",
+    email: "new@avss.dev",
+  });
+
+  await emitAfterSignUp({
+    userId: "2",
+    email: "new@avss.dev",
+  });
+
+  await emitBeforeSignOut({
+    userId: "1",
+  });
+
+  await emitAfterSignOut({
+    userId: "1",
+  });
+
+  console.log("\n========================================");
+  console.log("      HOOKS TEST COMPLETED");
+  console.log("========================================");
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\auth\hooks\types.ts
+================================================================================
+export type HookName =
+  | "before-signin"
+  | "after-signin"
+  | "before-signup"
+  | "after-signup"
+  | "before-signout"
+  | "after-signout";
+
+export interface HookPayload {
+  userId?: string;
+  email?: string;
+  sessionId?: string;
+  provider?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export type HookHandler = (
+  payload: HookPayload,
+) => void | Promise<void>;
+
+export interface HookEvent {
+  name: HookName;
+  handler: HookHandler;
+}
+
+export interface HookResult {
+  success: boolean;
+  message: string;
+}
+
+================================================================================
+FILE: src\auth\hooks\version.ts
+================================================================================
+export const HOOKS_NAME = "AVSS Hooks";
+
+export const HOOKS_FRAMEWORK_VERSION = "1.0.0";
+
+================================================================================
+FILE: src\auth\index.ts
+================================================================================
+export * from "./auth";
+export * from "./config";
+export * from "./password";
+export * from "./roles";
+export * from "./adapter";
+export * from "./session";
+export * from "./middleware";
+export * from "./providers";
+
+================================================================================
+FILE: src\auth\jwt\adapter.ts
+================================================================================
+import type { JwtEntry } from "./types";
+
+export interface JwtAdapter {
+  set(
+    token: string,
+    entry: JwtEntry,
+    ttl?: number,
+  ): void;
+
+  get(
+    token: string,
+  ): JwtEntry | undefined;
+
+  has(
+    token: string,
+  ): boolean;
+
+  delete(
+    token: string,
+  ): boolean;
+
+  clear(): void;
+
+  keys(): string[];
+
+  size(): number;
+}
+
+================================================================================
+FILE: src\auth\jwt\claims.ts
+================================================================================
+export interface RegisteredClaims {
+  sub?: string;
+  iss?: string;
+  aud?: string;
+  exp?: number;
+  nbf?: number;
+  iat?: number;
+  jti?: string;
+}
+
+export interface CustomClaims {
+  userId: string;
+  email: string;
+  role?: string;
+  permissions?: string[];
+}
+
+export type JwtClaims =
+  RegisteredClaims &
+  CustomClaims;
+
+================================================================================
+FILE: src\auth\jwt\constants.ts
+================================================================================
+export const JWT_NAME = "AVSS JWT";
+
+export const JWT_VERSION = "1.0.0";
+
+export const DEFAULT_JWT_SECRET =
+  "avss-lite-secret";
+
+export const DEFAULT_JWT_EXPIRES =
+  1000 * 60 * 60;
+
+export const JWT_MESSAGES = {
+  CREATED: "JWT created.",
+  VERIFIED: "JWT verified.",
+  INVALID: "Invalid token.",
+  EXPIRED: "Token expired.",
+  REVOKED: "Token revoked.",
+} as const;
+
+================================================================================
+FILE: src\auth\jwt\index.ts
+================================================================================
+export * from "./adapter";
+export * from "./constants";
+export * from "./jwt-manager";
+export * from "./memory-jwt";
+export * from "./types";
+export * from "./version";
+
+export * from "./jwt-builder";
+export * from "./jwt-parser";
+export * from "./claims";
+
+================================================================================
+FILE: src\auth\jwt\jwt-builder.ts
+================================================================================
+import { randomUUID } from "node:crypto";
+
+import type { JwtPayload } from "./types";
+
+import { DEFAULT_JWT_EXPIRES } from "./constants";
+
+export class JwtBuilder {
+
+  build(
+    payload: JwtPayload,
+    expiresIn: number = DEFAULT_JWT_EXPIRES,
+  ): string {
+
+    const now = Date.now();
+
+    return Buffer.from(
+      JSON.stringify({
+        ...payload,
+        iat: now,
+        exp: now + expiresIn,
+        jti: randomUUID(),
+      }),
+    ).toString("base64url");
+
+  }
+
+}
+
+================================================================================
+FILE: src\auth\jwt\jwt-manager.ts
+================================================================================
+import { JwtBuilder } from "./jwt-builder";
+import { JwtParser } from "./jwt-parser";
+import { JwtVerifier } from "./jwt-verifier";
+
+import type {
+  JwtPayload,
+  JwtStats,
+} from "./types";
+
+export class JwtManager {
+
+  private readonly builder =
+    new JwtBuilder();
+
+  private readonly parser =
+    new JwtParser();
+
+  private readonly verifier =
+    new JwtVerifier();
+
+  private tokens =
+    new Set<string>();
+
+  sign(
+    payload: JwtPayload,
+  ): string {
+
+    const token =
+      this.builder.build(
+        payload,
+      );
+
+    this.tokens.add(token);
+
+    return token;
+
+  }
+
+  verify(
+    token: string,
+  ): boolean {
+
+    if (
+      !this.tokens.has(token)
+    ) {
+      return false;
+    }
+
+    const payload =
+      this.decode(token);
+
+    return this.verifier.verify(
+      payload,
+    );
+
+  }
+
+  decode(
+    token: string,
+  ): JwtPayload | undefined {
+
+    return this.parser.parse(
+      token,
+    );
+
+  }
+
+  revoke(
+    token: string,
+  ): boolean {
+
+    return this.tokens.delete(
+      token,
+    );
+
+  }
+
+  clear(): void {
+
+    this.tokens.clear();
+
+  }
+
+  count(): number {
+
+    return this.tokens.size;
+
+  }
+
+  stats(): JwtStats {
+
+    return {
+      tokens: this.count(),
+    };
+
+  }
+
+}
+
+export function createJWT(): JwtManager {
+
+  return new JwtManager();
+
+}
+
+================================================================================
+FILE: src\auth\jwt\jwt-parser.ts
+================================================================================
+import type {
+  JwtPayload,
+} from "./types";
+
+export class JwtParser {
+
+  parse(
+    token: string,
+  ): JwtPayload | undefined {
+
+    try {
+
+      const payload =
+        JSON.parse(
+          Buffer
+            .from(
+              token,
+              "base64url",
+            )
+            .toString(),
+        );
+
+      return payload;
+
+    } catch {
+
+      return undefined;
+
+    }
+
+  }
+
+  decode(
+    token: string,
+  ): JwtPayload | undefined {
+
+    return this.parse(token);
+
+  }
+
+}
+
+================================================================================
+FILE: src\auth\jwt\jwt-verifier.ts
+================================================================================
+import type { JwtPayload } from "./types";
+
+export class JwtVerifier {
+
+  verify(
+    payload: JwtPayload | undefined,
+  ): boolean {
+
+    if (!payload) {
+      return false;
+    }
+
+    if (
+      payload.exp &&
+      Date.now() > payload.exp
+    ) {
+      return false;
+    }
+
+    return true;
+
+  }
+
+}
+
+================================================================================
+FILE: src\auth\jwt\memory-jwt.ts
+================================================================================
+import type { JwtAdapter } from "./adapter";
+import type { JwtEntry } from "./types";
+
+export class MemoryJwt
+  implements JwtAdapter {
+
+  private readonly storage =
+    new Map<string, JwtEntry>();
+
+  set(
+    token: string,
+    entry: JwtEntry,
+  ): void {
+
+    this.storage.set(token, entry);
+
+  }
+
+  get(
+    token: string,
+  ): JwtEntry | undefined {
+
+    return this.storage.get(token);
+
+  }
+
+  has(
+    token: string,
+  ): boolean {
+
+    return this.storage.has(token);
+
+  }
+
+  delete(
+    token: string,
+  ): boolean {
+
+    return this.storage.delete(token);
+
+  }
+
+  clear(): void {
+
+    this.storage.clear();
+
+  }
+
+  keys(): string[] {
+
+    return [...this.storage.keys()];
+
+  }
+
+  size(): number {
+
+    return this.storage.size;
+
+  }
+
+}
+
+================================================================================
+FILE: src\auth\jwt\test-jwt.ts
+================================================================================
+import { createJWT } from "./index";
+
+async function main(): Promise<void> {
+
+  console.clear();
+
+  console.log("========================================");
+  console.log("         AVSS JWT FRAMEWORK");
+  console.log("========================================\n");
+
+  const jwt = createJWT();
+
+  const token = jwt.sign({
+    userId: "1",
+    email: "admin@avss.dev",
+  });
+
+  console.log(
+    "✔ Sign Token      :",
+    token,
+  );
+
+  console.log(
+    "✔ Verify Token    :",
+    jwt.verify(token),
+  );
+
+  console.log(
+    "✔ Decode Token    :",
+    jwt.decode(token),
+  );
+
+  console.log(
+    "✔ Total Tokens    :",
+    jwt.count(),
+  );
+
+  console.log(
+    "✔ JWT Stats       :",
+    jwt.stats(),
+  );
+
+  console.log(
+    "✔ Revoke Token    :",
+    jwt.revoke(token),
+  );
+
+  console.log(
+    "✔ Verify Revoked  :",
+    jwt.verify(token),
+  );
+
+  jwt.clear();
+
+  console.log(
+    "✔ Clear Tokens    :",
+    jwt.count() === 0,
+  );
+
+  console.log("\n----------------------------------------");
+
+  console.log(
+    "Total Tokens :",
+    jwt.count(),
+  );
+
+  console.log(
+    "Stats :",
+    jwt.stats(),
+  );
+
+  console.log("\n========================================");
+  console.log("       JWT TEST COMPLETED");
+  console.log("========================================");
+
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\auth\jwt\types.ts
+================================================================================
+export interface JwtPayload {
+  userId: string;
+  email: string;
+  iat?: number;
+  exp?: number;
+  iss?: string;
+  aud?: string;
+}
+
+export interface JwtOptions {
+  secret: string;
+  expiresIn?: number;
+  issuer?: string;
+  audience?: string;
+}
+
+export interface JwtToken {
+  token: string;
+  expiresAt: number;
+}
+
+export interface JwtStats {
+  tokens: number;
+}
+
+export interface JwtResult<T = unknown> {
+  success: boolean;
+  data?: T;
+  message?: string;
+}
+
+export interface JwtEntry {
+  token: string;
+  payload: JwtPayload;
+  expiresAt: number;
+}
+
+================================================================================
+FILE: src\auth\jwt\version.ts
+================================================================================
+export const JWT_FRAMEWORK =
+  "AVSS JWT Framework";
+
+export const JWT_FRAMEWORK_VERSION =
+  "1.0.0";
+
+export const JWT_AUTHOR =
+  "AviDev Studio";
+
+export const JWT_LICENSE =
+  "MIT";
+
+export const JWT_HOMEPAGE =
+  "https://github.com/avidevstudio/avss-lite";
+
+export const JWT_INFO = {
+  framework: JWT_FRAMEWORK,
+  version: JWT_FRAMEWORK_VERSION,
+  author: JWT_AUTHOR,
+  license: JWT_LICENSE,
+  homepage: JWT_HOMEPAGE,
+} as const;
+
+================================================================================
+FILE: src\auth\middleware.ts
+================================================================================
+import { Role, hasAnyRole } from "./roles";
+
+export interface MiddlewareUser {
+  id: string;
+  role: Role;
+}
+
+export interface MiddlewareResult {
+  success: boolean;
+  message: string;
+}
+
+export function authMiddleware(
+  user: MiddlewareUser | null
+): MiddlewareResult {
+  if (!user) {
+    return {
+      success: false,
+      message: "Unauthorized",
+    };
+  }
+
+  return {
+    success: true,
+    message: "Authorized",
+  };
+}
+
+export function roleMiddleware(
+  user: MiddlewareUser | null,
+  roles: Role[]
+): MiddlewareResult {
+  if (!user) {
+    return {
+      success: false,
+      message: "Unauthorized",
+    };
+  }
+
+  if (!hasAnyRole(user.role, roles)) {
+    return {
+      success: false,
+      message: "Forbidden",
+    };
+  }
+
+  return {
+    success: true,
+    message: "Authorized",
+  };
+}
+
+export function guestMiddleware(
+  user: MiddlewareUser | null
+): MiddlewareResult {
+  if (user) {
+    return {
+      success: false,
+      message: "Already Authenticated",
+    };
+  }
+
+  return {
+    success: true,
+    message: "Guest Allowed",
+  };
+}
+
+================================================================================
+FILE: src\auth\oauth\callback.ts
+================================================================================
+import type { OAuthCallbackResult } from "./types";
+
+export function createCallbackResult(
+  provider: string,
+  code?: string,
+  state?: string,
+  error?: string,
+): OAuthCallbackResult {
+  return {
+    success: !error,
+    provider,
+    code,
+    state,
+    error,
+  };
+}
+
+================================================================================
+FILE: src\auth\oauth\constants.ts
+================================================================================
+export const OAUTH_VERSION = "1.0.0";
+
+export const PKCE_METHOD = "S256";
+
+export const DEFAULT_SCOPES = [
+  "openid",
+  "email",
+  "profile",
+] as const;
+
+export const STATE_LENGTH = 32;
+
+export const NONCE_LENGTH = 32;
+
+export const PKCE_VERIFIER_LENGTH = 64;
+
+================================================================================
+FILE: src\auth\oauth\index.ts
+================================================================================
+export * from "./oauth";
+export * from "./callback";
+export * from "./redirect";
+export * from "./state";
+export * from "./pkce";
+export * from "./nonce";
+
+export * from "./types";
+export * from "./constants";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\oauth\nonce.ts
+================================================================================
+import { randomBytes } from "node:crypto";
+import { NONCE_LENGTH } from "./constants";
+import type { OAuthNonce } from "./types";
+
+export function generateNonce(): OAuthNonce {
+  return {
+    value: randomBytes(NONCE_LENGTH).toString("hex"),
+    createdAt: new Date(),
+  };
+}
+
+export function validateNonce(
+  nonce: OAuthNonce,
+  expected: string,
+): boolean {
+  return nonce.value === expected;
+}
+
+================================================================================
+FILE: src\auth\oauth\oauth.ts
+================================================================================
+import { generateState } from "./state";
+import { generateNonce } from "./nonce";
+import { generatePkce } from "./pkce";
+
+export class OAuthFramework {
+  readonly state = generateState;
+  readonly nonce = generateNonce;
+  readonly pkce = generatePkce;
+}
+
+export function createOAuth(): OAuthFramework {
+  return new OAuthFramework();
+}
+
+================================================================================
+FILE: src\auth\oauth\pkce.ts
+================================================================================
+import { createHash, randomBytes } from "node:crypto";
+import {
+  PKCE_METHOD,
+  PKCE_VERIFIER_LENGTH,
+} from "./constants";
+import type { OAuthPkce } from "./types";
+
+function toBase64Url(buffer: Buffer): string {
+  return buffer
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
+}
+
+export function generatePkce(): OAuthPkce {
+  const verifier = toBase64Url(
+    randomBytes(PKCE_VERIFIER_LENGTH),
+  );
+
+  const challenge = toBase64Url(
+    createHash("sha256")
+      .update(verifier)
+      .digest(),
+  );
+
+  return {
+    verifier,
+    challenge,
+    method: PKCE_METHOD,
+  };
+}
+
+================================================================================
+FILE: src\auth\oauth\redirect.ts
+================================================================================
+import type { OAuthRedirectOptions } from "./types";
+
+export function createRedirectUrl(
+  options: OAuthRedirectOptions,
+): string {
+  const url = new URL(options.redirectUri);
+
+  url.searchParams.set("provider", options.provider);
+  url.searchParams.set("state", options.state);
+
+  if (options.scope?.length) {
+    url.searchParams.set(
+      "scope",
+      options.scope.join(" "),
+    );
+  }
+
+  return url.toString();
+}
+
+================================================================================
+FILE: src\auth\oauth\state.ts
+================================================================================
+import { randomBytes } from "node:crypto";
+import { STATE_LENGTH } from "./constants";
+import type { OAuthState } from "./types";
+
+export function generateState(): OAuthState {
+  return {
+    value: randomBytes(STATE_LENGTH).toString("hex"),
+    createdAt: new Date(),
+  };
+}
+
+export function validateState(
+  state: OAuthState,
+  expected: string,
+): boolean {
+  return state.value === expected;
+}
+
+================================================================================
+FILE: src\auth\oauth\test-oauth.ts
+================================================================================
+import {
+  createOAuth,
+  createRedirectUrl,
+  createCallbackResult,
+} from "./index";
+
+function main(): void {
+  console.clear();
+
+  console.log("========================================");
+  console.log("         AVSS OAUTH FRAMEWORK");
+  console.log("========================================\n");
+
+  const oauth = createOAuth();
+
+  console.log("========== STATE ==========\n");
+
+  const state = oauth.state();
+
+  console.log(state);
+
+  console.log("\n========== NONCE ==========\n");
+
+  const nonce = oauth.nonce();
+
+  console.log(nonce);
+
+  console.log("\n========== PKCE ==========\n");
+
+  const pkce = oauth.pkce();
+
+  console.log(pkce);
+
+  console.log("\n========== REDIRECT ==========\n");
+
+  console.log(
+    createRedirectUrl({
+      provider: "google",
+      redirectUri: "http://localhost:3000/api/auth/callback",
+      state: state.value,
+      scope: ["openid", "email", "profile"],
+    }),
+  );
+
+  console.log("\n========== CALLBACK ==========\n");
+
+  console.log(
+    createCallbackResult(
+      "google",
+      "authorization-code",
+      state.value,
+    ),
+  );
+
+  console.log("\n========================================");
+  console.log("      OAUTH TEST COMPLETED");
+  console.log("========================================");
+}
+
+main();
+
+================================================================================
+FILE: src\auth\oauth\types.ts
+================================================================================
+export interface OAuthProviderConfig {
+  clientId: string;
+  clientSecret: string;
+  redirectUri: string;
+}
+
+export interface OAuthState {
+  value: string;
+  createdAt: Date;
+}
+
+export interface OAuthNonce {
+  value: string;
+  createdAt: Date;
+}
+
+export interface OAuthPkce {
+  verifier: string;
+  challenge: string;
+  method: "S256";
+}
+
+export interface OAuthRedirectOptions {
+  provider: string;
+  redirectUri: string;
+  state: string;
+  scope?: string[];
+}
+
+export interface OAuthCallbackResult {
+  success: boolean;
+  provider: string;
+  code?: string;
+  state?: string;
+  error?: string;
+}
+
+================================================================================
+FILE: src\auth\oauth\version.ts
+================================================================================
+export const OAUTH_FRAMEWORK = "AVSS OAuth";
+
+export const OAUTH_FRAMEWORK_VERSION = "v1.0.0";
+
+================================================================================
+FILE: src\auth\password.ts
+================================================================================
+import argon2 from "argon2";
+import { randomBytes } from "node:crypto";
+
+const ARGON2_OPTIONS = {
+  type: argon2.argon2id,
+  memoryCost: 65536,
+  timeCost: 3,
+  parallelism: 1,
+} as const;
+
+/**
+ * Hash a plain text password using Argon2id.
+ */
+export async function hashPassword(
+  password: string
+): Promise<string> {
+  return await argon2.hash(password, ARGON2_OPTIONS);
+}
+
+/**
+ * Verify a password against a stored hash.
+ */
+export async function verifyPassword(
+  password: string,
+  hash: string
+): Promise<boolean> {
+  return await argon2.verify(hash, password);
+}
+
+/**
+ * Check if a password hash should be rehashed.
+ */
+export async function needsRehash(
+  hash: string
+): Promise<boolean> {
+  return await argon2.needsRehash(hash, {
+    memoryCost: ARGON2_OPTIONS.memoryCost,
+    timeCost: ARGON2_OPTIONS.timeCost,
+    parallelism: ARGON2_OPTIONS.parallelism,
+  });
+}
+
+/**
+ * Generate a secure random password.
+ */
+export function generatePassword(
+  length = 16
+): string {
+  return randomBytes(length)
+    .toString("base64")
+    .replace(/[^a-zA-Z0-9]/g, "")
+    .slice(0, length);
+}
+
+================================================================================
+FILE: src\auth\providers\apple.ts
+================================================================================
+export interface AppleProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface AppleProvider {
+  id: "apple";
+  name: "Apple";
+  config: AppleProviderConfig;
+}
+
+export function createAppleProvider(
+  config: AppleProviderConfig,
+): AppleProvider {
+  return {
+    id: "apple",
+    name: "Apple",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\constants.ts
+================================================================================
+export const PROVIDER_VERSION = "1.0.0";
+
+export const PROVIDERS = {
+  GOOGLE: "google",
+  GITHUB: "github",
+  DISCORD: "discord",
+  MICROSOFT: "microsoft",
+  APPLE: "apple",
+  GITLAB: "gitlab",
+  CREDENTIALS: "credentials",
+} as const;
+
+================================================================================
+FILE: src\auth\providers\constants.ts.ts
+================================================================================
+export const PROVIDER_VERSION = "1.0.0";
+
+export const PROVIDERS = {
+  GOOGLE: "google",
+  GITHUB: "github",
+  DISCORD: "discord",
+  MICROSOFT: "microsoft",
+  APPLE: "apple",
+  GITLAB: "gitlab",
+  CREDENTIALS: "credentials",
+} as const;
+
+================================================================================
+FILE: src\auth\providers\credentials.ts
+================================================================================
+export interface CredentialsProviderConfig {
+  emailVerification?: boolean;
+  passwordReset?: boolean;
+}
+
+export interface CredentialsProvider {
+  id: "credentials";
+  name: "Credentials";
+  config: CredentialsProviderConfig;
+}
+
+export function createCredentialsProvider(
+  config: CredentialsProviderConfig = {},
+): CredentialsProvider {
+  return {
+    id: "credentials",
+    name: "Credentials",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\discord.ts
+================================================================================
+export interface DiscordProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface DiscordProvider {
+  id: "discord";
+  name: "Discord";
+  config: DiscordProviderConfig;
+}
+
+export function createDiscordProvider(
+  config: DiscordProviderConfig,
+): DiscordProvider {
+  return {
+    id: "discord",
+    name: "Discord",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\github.ts
+================================================================================
+export interface GithubProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface GithubProvider {
+  id: "github";
+  name: "GitHub";
+  config: GithubProviderConfig;
+}
+
+export function createGithubProvider(
+  config: GithubProviderConfig,
+): GithubProvider {
+  return {
+    id: "github",
+    name: "GitHub",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\gitlab.ts
+================================================================================
+export interface GitlabProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface GitlabProvider {
+  id: "gitlab";
+  name: "GitLab";
+  config: GitlabProviderConfig;
+}
+
+export function createGitlabProvider(
+  config: GitlabProviderConfig,
+): GitlabProvider {
+  return {
+    id: "gitlab",
+    name: "GitLab",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\google.ts
+================================================================================
+export interface GoogleProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface GoogleProvider {
+  id: "google";
+  name: "Google";
+  config: GoogleProviderConfig;
+}
+
+export function createGoogleProvider(
+  config: GoogleProviderConfig,
+): GoogleProvider {
+  return {
+    id: "google",
+    name: "Google",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\index.ts
+================================================================================
+export * from "./google";
+export * from "./github";
+export * from "./discord";
+export * from "./microsoft";
+export * from "./apple";
+export * from "./gitlab";
+export * from "./credentials";
+
+export * from "./manager";
+export * from "./types";
+export * from "./constants";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\providers\manager.ts
+================================================================================
+export interface AuthProvider {
+  id: string;
+  name: string;
+}
+
+export class ProviderManager {
+  private readonly providers = new Map<string, AuthProvider>();
+
+  register<T extends AuthProvider>(provider: T): T {
+    this.providers.set(provider.id, provider);
+    return provider;
+  }
+
+  get(id: string): AuthProvider | undefined {
+    return this.providers.get(id);
+  }
+
+  has(id: string): boolean {
+    return this.providers.has(id);
+  }
+
+  all(): AuthProvider[] {
+    return [...this.providers.values()];
+  }
+
+  count(): number {
+    return this.providers.size;
+  }
+
+  clear(): void {
+    this.providers.clear();
+  }
+}
+
+export const providerManager = new ProviderManager();
+
+================================================================================
+FILE: src\auth\providers\microsoft.ts
+================================================================================
+export interface MicrosoftProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface MicrosoftProvider {
+  id: "microsoft";
+  name: "Microsoft";
+  config: MicrosoftProviderConfig;
+}
+
+export function createMicrosoftProvider(
+  config: MicrosoftProviderConfig,
+): MicrosoftProvider {
+  return {
+    id: "microsoft",
+    name: "Microsoft",
+    config,
+  };
+}
+
+================================================================================
+FILE: src\auth\providers\test-providers.ts
+================================================================================
+import {
+  createAppleProvider,
+  createCredentialsProvider,
+  createDiscordProvider,
+  createGithubProvider,
+  createGitlabProvider,
+  createGoogleProvider,
+  createMicrosoftProvider,
+  providerManager,
+} from "./index";
+
+function main(): void {
+  console.clear();
+
+  console.log("========================================");
+  console.log("      AVSS PROVIDERS FRAMEWORK TEST");
+  console.log("========================================\n");
+
+  providerManager.clear();
+
+  providerManager.register(
+    createGoogleProvider({
+      clientId: "google-client-id",
+      clientSecret: "google-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createGithubProvider({
+      clientId: "github-client-id",
+      clientSecret: "github-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createDiscordProvider({
+      clientId: "discord-client-id",
+      clientSecret: "discord-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createMicrosoftProvider({
+      clientId: "microsoft-client-id",
+      clientSecret: "microsoft-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createAppleProvider({
+      clientId: "apple-client-id",
+      clientSecret: "apple-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createGitlabProvider({
+      clientId: "gitlab-client-id",
+      clientSecret: "gitlab-client-secret",
+    }),
+  );
+
+  providerManager.register(
+    createCredentialsProvider({
+      emailVerification: true,
+      passwordReset: true,
+    }),
+  );
+
+  console.log("Registered Providers\n");
+
+  for (const provider of providerManager.all()) {
+    console.log(`✔ ${provider.name}`);
+  }
+
+  console.log("\n----------------------------------------");
+
+  console.log(`Total Providers : ${providerManager.count()}`);
+
+  console.log("\n========================================");
+  console.log("    PROVIDERS TEST COMPLETED");
+  console.log("========================================");
+}
+
+main();
+
+================================================================================
+FILE: src\auth\providers\types.ts
+================================================================================
+export interface OAuthProviderConfig {
+  clientId: string;
+  clientSecret: string;
+}
+
+export interface BaseProvider {
+  id: string;
+  name: string;
+}
+
+================================================================================
+FILE: src\auth\providers\version.ts
+================================================================================
+export const PROVIDERS_FRAMEWORK = "AVSS Providers";
+
+export const PROVIDERS_VERSION = "v1.0.0";
+
+================================================================================
+FILE: src\auth\roles.ts
+================================================================================
+export enum Role {
+  USER = "USER",
+  MODERATOR = "MODERATOR",
+  ADMIN = "ADMIN",
+  SUPER_ADMIN = "SUPER_ADMIN",
+}
+
+export const DEFAULT_ROLE = Role.USER;
+
+export function hasRole(
+  userRole: Role,
+  requiredRole: Role
+): boolean {
+  return userRole === requiredRole;
+}
+
+export function hasAnyRole(
+  userRole: Role,
+  roles: Role[]
+): boolean {
+  return roles.includes(userRole);
+}
+
+export function isUser(role: Role): boolean {
+  return role === Role.USER;
+}
+
+export function isModerator(role: Role): boolean {
+  return role === Role.MODERATOR;
+}
+
+export function isAdmin(role: Role): boolean {
+  return role === Role.ADMIN;
+}
+
+export function isSuperAdmin(role: Role): boolean {
+  return role === Role.SUPER_ADMIN;
+}
+
+================================================================================
+FILE: src\auth\session.ts
+================================================================================
+export interface SessionUser {
+  id: string;
+  email: string;
+  name?: string;
+  role?: string;
+}
+
+export interface Session {
+  user: SessionUser;
+  expiresAt: Date;
+}
+
+export function isSessionExpired(
+  session: Session
+): boolean {
+  return new Date() >= session.expiresAt;
+}
+
+export function getRemainingTime(
+  session: Session
+): number {
+  return Math.max(
+    session.expiresAt.getTime() - Date.now(),
+    0
+  );
+}
+
+================================================================================
+FILE: src\auth\session\adapter.ts
+================================================================================
+export interface SessionAdapter<T = unknown> {
+  create(
+    id: string,
+    session: T,
+    ttl?: number,
+  ): void;
+
+  get(
+    id: string,
+  ): T | undefined;
+
+  has(
+    id: string,
+  ): boolean;
+
+  delete(
+    id: string,
+  ): boolean;
+
+  clear(): void;
+
+  keys(): string[];
+
+  size(): number;
+}
+
+================================================================================
+FILE: src\auth\session\constants.ts
+================================================================================
+export const SESSION_NAME = "AVSS Session";
+
+export const SESSION_VERSION = "1.0.0";
+
+export const DEFAULT_SESSION_TTL =
+  1000 * 60 * 60 * 24 * 7; // 7 Days
+
+export const SESSION_PREFIX =
+  "avss_session";
+
+export const SESSION_MESSAGES = {
+  CREATED: "Session created.",
+  FOUND: "Session found.",
+  UPDATED: "Session updated.",
+  REFRESHED: "Session refreshed.",
+  DELETED: "Session deleted.",
+  CLEARED: "All sessions cleared.",
+  EXPIRED: "Session expired.",
+  NOT_FOUND: "Session not found.",
+} as const;
+
+================================================================================
+FILE: src\auth\session\index.ts
+================================================================================
+export * from "./adapter";
+export * from "./memory-session";
+export * from "./session-store";
+export * from "./session-manager";
+
+export * from "./types";
+export * from "./constants";
+export * from "./version";
+
+================================================================================
+FILE: src\auth\session\memory-session.ts
+================================================================================
+import type { SessionAdapter } from "./adapter";
+import type { Session } from "./types";
+
+interface SessionEntry {
+  session: Session;
+  expiresAt?: number;
+}
+
+export class MemorySession
+  implements SessionAdapter<Session>
+{
+  private readonly storage = new Map<
+    string,
+    SessionEntry
+  >();
+
+  create(
+    id: string,
+    session: Session,
+    ttl?: number,
+  ): void {
+    this.storage.set(id, {
+      session,
+      expiresAt: ttl
+        ? Date.now() + ttl
+        : undefined,
+    });
+  }
+
+  get(
+    id: string,
+  ): Session | undefined {
+    const entry = this.storage.get(id);
+
+    if (!entry) {
+      return undefined;
+    }
+
+    if (
+      entry.expiresAt &&
+      Date.now() > entry.expiresAt
+    ) {
+      this.storage.delete(id);
+      return undefined;
+    }
+
+    return entry.session;
+  }
+
+  has(
+    id: string,
+  ): boolean {
+    return this.get(id) !== undefined;
+  }
+
+  delete(
+    id: string,
+  ): boolean {
+    return this.storage.delete(id);
+  }
+
+  clear(): void {
+    this.storage.clear();
+  }
+
+  keys(): string[] {
+    return [...this.storage.keys()];
+  }
+
+  size(): number {
+    return this.storage.size;
+  }
+}
+
+================================================================================
+FILE: src\auth\session\session-manager.ts
+================================================================================
+import { randomUUID } from "node:crypto";
+
+import { sessionStore } from "./session-store";
+
+import {
+  DEFAULT_SESSION_TTL,
+} from "./constants";
+
+import type {
+  Session,
+  SessionOptions,
+  SessionStats,
+} from "./types";
+
+export class SessionManager {
+
+  create(
+    payload: Omit<
+      Session,
+      "id" | "createdAt" | "expiresAt"
+    >,
+    options: SessionOptions = {},
+  ): Session {
+
+    const ttl =
+      options.ttl ??
+      DEFAULT_SESSION_TTL;
+
+    const session: Session = {
+      id: randomUUID(),
+      userId: payload.userId,
+      email: payload.email,
+      createdAt: Date.now(),
+      expiresAt: Date.now() + ttl,
+    };
+
+    sessionStore.create(
+      session.id,
+      session,
+      ttl,
+    );
+
+    return session;
+  }
+
+  get(
+    id: string,
+  ): Session | undefined {
+
+    return sessionStore.get(id);
+
+  }
+
+  exists(
+    id: string,
+  ): boolean {
+
+    return sessionStore.has(id);
+
+  }
+
+  destroy(
+    id: string,
+  ): boolean {
+
+    return sessionStore.delete(id);
+
+  }
+
+  clear(): void {
+
+    sessionStore.clear();
+
+  }
+
+  refresh(
+    id: string,
+    ttl: number = DEFAULT_SESSION_TTL,
+  ): Session | undefined {
+
+    const session =
+      sessionStore.get(id);
+
+    if (!session) {
+      return undefined;
+    }
+
+    const refreshed: Session = {
+      ...session,
+      expiresAt: Date.now() + ttl,
+    };
+
+    sessionStore.create(
+      id,
+      refreshed,
+      ttl,
+    );
+
+    return refreshed;
+  }
+
+  count(): number {
+
+    return sessionStore.size();
+
+  }
+
+  keys(): string[] {
+
+    return sessionStore.keys();
+
+  }
+
+  stats(): SessionStats {
+
+    return {
+      sessions: this.count(),
+    };
+
+  }
+
+}
+
+export function createSession() {
+
+  return new SessionManager();
+
+}
+
+================================================================================
+FILE: src\auth\session\session-store.ts
+================================================================================
+import { MemorySession } from "./memory-session";
+
+export const sessionStore =
+  new MemorySession();
+
+================================================================================
+FILE: src\auth\session\test-session.ts
+================================================================================
+import {
+  createSession,
+} from "./index";
+
+async function main(): Promise<void> {
+
+  console.clear();
+
+  console.log("========================================");
+  console.log("       AVSS SESSION FRAMEWORK");
+  console.log("========================================\n");
+
+  const session =
+    createSession();
+
+  const user =
+    session.create({
+      userId: "1",
+      email: "admin@avss.dev",
+    });
+
+  console.log(
+    "✔ Create Session   :",
+    user.id,
+  );
+
+  console.log(
+    "✔ Get Session      :",
+    session.get(user.id),
+  );
+
+  console.log(
+    "✔ Exists Session   :",
+    session.exists(user.id),
+  );
+
+  console.log(
+    "✔ Refresh Session  :",
+    session.refresh(user.id),
+  );
+
+  console.log(
+    "✔ Session Stats    :",
+    session.stats(),
+  );
+
+  console.log(
+    "✔ Session Keys     :",
+    session.keys(),
+  );
+
+  console.log(
+    "✔ Total Sessions   :",
+    session.count(),
+  );
+
+  console.log(
+    "✔ Destroy Session  :",
+    session.destroy(user.id),
+  );
+
+  console.log(
+    "✔ Exists Session   :",
+    session.exists(user.id),
+  );
+
+  session.clear();
+
+  console.log(
+    "✔ Clear Sessions   :",
+    session.count() === 0,
+  );
+
+  console.log("\n----------------------------------------");
+
+  console.log(
+    "Total Sessions :",
+    session.count(),
+  );
+
+  console.log(
+    "Stats :",
+    session.stats(),
+  );
+
+  console.log("\n========================================");
+  console.log("     SESSION TEST COMPLETED");
+  console.log("========================================");
+
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\auth\session\types.ts
+================================================================================
+export interface Session {
+  id: string;
+  userId: string;
+  email: string;
+  createdAt: number;
+  expiresAt: number;
+}
+
+export interface SessionOptions {
+  ttl?: number;
+}
+
+export interface SessionStats {
+  sessions: number;
+}
+
+export interface SessionResult<T = Session> {
+  success: boolean;
+  data?: T;
+  message?: string;
+}
+
+export interface SessionPayload {
+  userId: string;
+  email: string;
+}
+
+export interface SessionEntry {
+  session: Session;
+  expiresAt?: number;
+}
+
+export interface SessionDriver {
+  name: string;
+  version: string;
+}
+
+================================================================================
+FILE: src\auth\session\version.ts
+================================================================================
+export const SESSION_FRAMEWORK =
+  "AVSS Session Framework";
+
+export const SESSION_FRAMEWORK_VERSION =
+  "1.0.0";
+
+export const SESSION_AUTHOR =
+  "AviDev Studio";
+
+export const SESSION_LICENSE =
+  "MIT";
+
+export const SESSION_HOMEPAGE =
+  "https://github.com/avidevstudio/avss-lite";
+
+export const SESSION_BANNER = `
+========================================
+      AVSS SESSION FRAMEWORK
+========================================
+`;
+
+export const SESSION_INFO = {
+  framework: SESSION_FRAMEWORK,
+  version: SESSION_FRAMEWORK_VERSION,
+  author: SESSION_AUTHOR,
+  license: SESSION_LICENSE,
+  homepage: SESSION_HOMEPAGE,
+} as const;
+
+================================================================================
+FILE: src\cors\cors.ts
+================================================================================
+import cors from "cors";
+
+export const corsMiddleware = cors({
+  origin: true,
+  credentials: true,
+});
+
+================================================================================
+FILE: src\cors\index.ts
+================================================================================
+export * from "./cors";
+
+================================================================================
+FILE: src\debug.ts
+================================================================================
+import fs from "node:fs";
+import path from "node:path";
+import dotenv from "dotenv";
+
+const envPath = path.resolve(process.cwd(), ".env");
+
+console.log("CWD:", process.cwd());
+console.log("ENV PATH:", envPath);
+console.log("ENV EXISTS:", fs.existsSync(envPath));
+
+const result = dotenv.config({
+  path: envPath,
+});
+
+console.log("DOTENV RESULT:", result);
+
+console.log({
+  DATABASE_URL: process.env.DATABASE_URL,
+  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+  BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+  NODE_ENV: process.env.NODE_ENV,
+});
+
+================================================================================
+FILE: src\dev.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+
+import { createAuth } from "./auth";
+import { loggerPlugin, auditPlugin } from "./plugins";
+
+const prisma = new PrismaClient();
+
+const auth = createAuth({
+  prisma,
+  plugins: [
+    loggerPlugin(),
+    auditPlugin(),
+  ],
+});
+
+console.log(auth);
+
+================================================================================
+FILE: src\doctor\doctor.ts
+================================================================================
+export interface CheckResult {
+  name: string;
+  success: boolean;
+}
+
+export class Doctor {
+  private results: CheckResult[] = [];
+
+  check(name: string, success: boolean) {
+    this.results.push({
+      name,
+      success,
+    });
+  }
+
+  render() {
+    console.clear();
+
+    console.log("╔══════════════════════════════════════════════════════╗");
+    console.log("║                  AVSS HEALTH CHECK                 ║");
+    console.log("╠══════════════════════════════════════════════════════╣");
+
+    for (const item of this.results) {
+      const status = item.success ? "🟢 PASS" : "🔴 FAIL";
+
+      console.log(
+        `║ ${item.name.padEnd(18)} ${status.padEnd(31)}║`
+      );
+    }
+
+    console.log("╠══════════════════════════════════════════════════════╣");
+
+    const passed = this.results.filter(r => r.success).length;
+    const failed = this.results.length - passed;
+
+    console.log(
+      `║ PASS : ${String(passed).padEnd(42)}║`
+    );
+
+    console.log(
+      `║ FAIL : ${String(failed).padEnd(42)}║`
+    );
+
+    console.log(
+      `║ STATUS : ${(failed === 0 ? "ALL TEST PASSED 🎉" : "FAILED ❌").padEnd(35)}║`
+    );
+
+    console.log("╚══════════════════════════════════════════════════════╝");
+  }
+}
+
+export const doctor = new Doctor();
+
+================================================================================
+FILE: src\doctor\index.ts
+================================================================================
+export * from "./doctor";
+
+================================================================================
+FILE: src\doctor\test-doctor.ts
+================================================================================
+import { doctor } from "./doctor";
+
+doctor.check("ENV", true);
+doctor.check("VALIDATION", true);
+doctor.check("PASSWORD", true);
+doctor.check("CONFIG", true);
+doctor.check("AUTH", true);
+doctor.check("SESSION", true);
+doctor.check("ADAPTER", true);
+doctor.check("ROLES", true);
+doctor.check("MIDDLEWARE", true);
+doctor.check("LOGGER", true);
+doctor.check("ERROR", true);
+doctor.check("AUDIT", true);
+
+doctor.render();
+
+================================================================================
+FILE: src\env\env.ts
+================================================================================
+import "dotenv/config";
+import { z } from "zod";
+
+const envSchema = z.object({
+  NODE_ENV: z
+    .enum([
+      "development",
+      "production",
+      "test",
+    ])
+    .default("development"),
+
+  DATABASE_URL: z.string().min(1),
+
+  BETTER_AUTH_SECRET: z
+    .string()
+    .min(32, "BETTER_AUTH_SECRET minimal 32 karakter"),
+
+  BETTER_AUTH_URL: z
+    .string()
+    .url("BETTER_AUTH_URL harus berupa URL yang valid"),
+});
+
+export type Env = z.infer<typeof envSchema>;
+
+export function validateEnv(): Env {
+  return envSchema.parse(process.env);
+}
+
+================================================================================
+FILE: src\env\index.ts
+================================================================================
+export * from "./env";
+
+================================================================================
+FILE: src\errors\base.ts
+================================================================================
+import { ErrorCode } from "./codes";
+
+export class AVSSError extends Error {
+  public readonly status: number;
+  public readonly code: ErrorCode;
+  public readonly timestamp: Date;
+
+  constructor(
+    message: string,
+    status: number,
+    code: ErrorCode
+  ) {
+    super(message);
+
+    this.name = this.constructor.name;
+    this.status = status;
+    this.code = code;
+    this.timestamp = new Date();
+
+    Object.setPrototypeOf(this, new.target.prototype);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      status: this.status,
+      code: this.code,
+      timestamp: this.timestamp.toISOString(),
+    };
+  }
+}
+
+================================================================================
+FILE: src\errors\codes.ts
+================================================================================
+export enum ErrorCode {
+  UNAUTHORIZED = "UNAUTHORIZED",
+  FORBIDDEN = "FORBIDDEN",
+  VALIDATION_ERROR = "VALIDATION_ERROR",
+  SESSION_EXPIRED = "SESSION_EXPIRED",
+  INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+}
+
+================================================================================
+FILE: src\errors\forbidden.ts
+================================================================================
+import { AVSSError } from "./base";
+import { ErrorCode } from "./codes";
+
+export class ForbiddenError extends AVSSError {
+  constructor(message = "Forbidden") {
+    super(message, 403, ErrorCode.FORBIDDEN);
+  }
+}
+
+================================================================================
+FILE: src\errors\handler.ts
+================================================================================
+import { AVSSError } from "./base";
+
+export interface ErrorResponse {
+  success: false;
+  error: {
+    name: string;
+    message: string;
+    status: number;
+    code: string;
+    timestamp: string;
+  };
+}
+
+export function errorHandler(error: unknown): ErrorResponse {
+  if (error instanceof AVSSError) {
+    return {
+      success: false,
+      error: {
+        name: error.name,
+        message: error.message,
+        status: error.status,
+        code: error.code,
+        timestamp: error.timestamp.toISOString(),
+      },
+    };
+  }
+
+  return {
+    success: false,
+    error: {
+      name: "InternalServerError",
+      message: "Internal Server Error",
+      status: 500,
+      code: "INTERNAL_SERVER_ERROR",
+      timestamp: new Date().toISOString(),
+    },
+  };
+}
+
+================================================================================
+FILE: src\errors\index.ts
+================================================================================
+export * from "./base";
+export * from "./codes";
+export * from "./unauthorized";
+export * from "./forbidden";
+export * from "./validation";
+export * from "./session-expired";
+export * from "./internal";
+export * from "./handler";
+
+
+================================================================================
+FILE: src\errors\internal.ts
+================================================================================
+import { AVSSError } from "./base";
+import { ErrorCode } from "./codes";
+
+export class InternalServerError extends AVSSError {
+  constructor(message = "Internal Server Error") {
+    super(message, 500, ErrorCode.INTERNAL_SERVER_ERROR);
+  }
+}
+
+================================================================================
+FILE: src\errors\session-expired.ts
+================================================================================
+import { AVSSError } from "./base";
+import { ErrorCode } from "./codes";
+
+export class SessionExpiredError extends AVSSError {
+  constructor(message = "Session Expired") {
+    super(message, 401, ErrorCode.SESSION_EXPIRED);
+  }
+}
+
+================================================================================
+FILE: src\errors\unauthorized.ts
+================================================================================
+import { AVSSError } from "./base";
+import { ErrorCode } from "./codes";
+
+export class UnauthorizedError extends AVSSError {
+  constructor(message = "Unauthorized") {
+    super(message, 401, ErrorCode.UNAUTHORIZED);
+  }
+}
+
+================================================================================
+FILE: src\errors\validation.ts
+================================================================================
+import { AVSSError } from "./base";
+import { ErrorCode } from "./codes";
+
+export class ValidationError extends AVSSError {
+  constructor(message = "Validation Failed") {
+    super(message, 400, ErrorCode.VALIDATION_ERROR);
+  }
+}
+
+================================================================================
+FILE: src\events\emitter.ts
+================================================================================
+import type { EventMap, EventName } from "./events";
+import type { EventListener } from "./listener";
+
+export class EventEmitter {
+  private listeners = new Map<
+    EventName,
+    Array<(payload: unknown) => void>
+  >();
+
+  on<K extends EventName>(
+    event: K,
+    listener: EventListener<K>
+  ): void {
+    const current =
+      this.listeners.get(event) ?? [];
+
+    current.push(listener as (payload: unknown) => void);
+
+    this.listeners.set(event, current);
+  }
+
+  off<K extends EventName>(
+    event: K,
+    listener: EventListener<K>
+  ): void {
+    const current = this.listeners.get(event);
+
+    if (!current) return;
+
+    this.listeners.set(
+      event,
+      current.filter(
+        (l) => l !== (listener as (payload: unknown) => void)
+      )
+    );
+  }
+
+  emit<K extends EventName>(
+    event: K,
+    payload: EventMap[K]
+  ): void {
+    const current = this.listeners.get(event);
+
+    if (!current) return;
+
+    current.forEach((listener) => {
+      listener(payload);
+    });
+  }
+
+  clear(): void {
+    this.listeners.clear();
+  }
+
+  listenerCount(event: EventName): number {
+    return this.listeners.get(event)?.length ?? 0;
+  }
+}
+
+export const events = new EventEmitter();
+
+================================================================================
+FILE: src\events\events.ts
+================================================================================
+export interface LoginEvent {
+  id: string;
+  name: string;
+  email?: string;
+  role?: string;
+}
+
+export interface LogoutEvent {
+  id: string;
+  name: string;
+}
+
+export interface RegisterEvent {
+  id: string;
+  name: string;
+  email?: string;
+}
+
+export interface FailedLoginEvent {
+  email: string;
+}
+
+export interface EventMap {
+  login: LoginEvent;
+  logout: LogoutEvent;
+  register: RegisterEvent;
+  failedLogin: FailedLoginEvent;
+  changePassword: LoginEvent;
+  changeRole: LoginEvent;
+  deleteUser: LoginEvent;
+  verifyEmail: LoginEvent;
+  resetPassword: LoginEvent;
+}
+
+export type EventName = keyof EventMap;
+
+================================================================================
+FILE: src\events\index.ts
+================================================================================
+export * from "./events";
+export * from "./listener";
+export * from "./emitter";
+
+================================================================================
+FILE: src\events\listener.ts
+================================================================================
+import type { EventMap } from "./events";
+
+export type EventListener<K extends keyof EventMap> = (
+  payload: EventMap[K]
+) => void;
+
+================================================================================
+FILE: src\events\test-events.ts
+================================================================================
+import { events } from "./emitter";
+
+console.log("========== EVENT BUS ==========\n");
+
+// Logger
+events.on("login", (user) => {
+  console.log("📝 LOGGER");
+  console.log(`${user.name} logged in`);
+  console.log();
+});
+
+// Audit
+events.on("login", (user) => {
+  console.log("📋 AUDIT");
+  console.log(`${user.email} LOGIN SUCCESS`);
+  console.log();
+});
+
+// Plugin
+events.on("login", (user) => {
+  console.log("🔌 PLUGIN");
+  console.log(`Welcome ${user.name}`);
+  console.log();
+});
+
+// Analytics
+events.on("login", (user) => {
+  console.log("📊 ANALYTICS");
+  console.log(`Tracking login: ${user.id}`);
+  console.log();
+});
+
+events.emit("login", {
+  id: "1",
+  name: "Raka",
+  email: "admin@gmail.com",
+  role: "ADMIN",
+});
+
+console.log("Login Listeners :", events.listenerCount("login"));
+
+console.log("\n✅ Event Bus Loaded");
+
+================================================================================
+FILE: src\index.ts
+================================================================================
+export * from "./adapters";
+
+export * from "./audit";
+export * from "./auth";
+export * from "./cors";
+export * from "./doctor";
+export * from "./env";
+export * from "./errors";
+export * from "./events";
+export * from "./logger";
+export * from "./plugins";
+export * from "./prisma";
+export * from "./security";
+export * from "./terminal";
+export * from "./validation";
+
+export * from "./dev";
+
+================================================================================
+FILE: src\logger\banner.ts
+================================================================================
+export function showBanner(): void {
+
+  console.log("");
+
+  console.log("==============================================");
+  console.log("           AVSS LOGGER v1.0");
+  console.log("==============================================");
+
+  console.log("");
+
+}
+
+================================================================================
+FILE: src\logger\colors.ts
+================================================================================
+import { LogLevel } from "./types";
+
+export const RESET = "\x1b[0m";
+
+export const COLORS: Record<LogLevel, string> = {
+  INFO: "\x1b[36m",
+  SUCCESS: "\x1b[32m",
+  WARN: "\x1b[33m",
+  ERROR: "\x1b[31m",
+  DEBUG: "\x1b[35m",
+  SECURITY: "\x1b[91m",
+  DATABASE: "\x1b[34m",
+  ACCESS: "\x1b[96m",
+  FATAL: "\x1b[41m\x1b[37m",
+};
+
+export const EMOJI: Record<LogLevel, string> = {
+  INFO: "ℹ️",
+  SUCCESS: "✅",
+  WARN: "⚠️",
+  ERROR: "❌",
+  DEBUG: "🐞",
+  SECURITY: "🛡️",
+  DATABASE: "🗄️",
+  ACCESS: "🌐",
+  FATAL: "💀",
+};
+
+================================================================================
+FILE: src\logger\config.ts
+================================================================================
+import { LoggerConfig } from "./types";
+
+export const loggerConfig: LoggerConfig = {
+  console: true,
+  file: true,
+  timestamp: true,
+  emoji: true,
+};
+
+================================================================================
+FILE: src\logger\console.ts
+================================================================================
+import { loggerConfig } from "./config";
+import { formatLog } from "./formatter";
+import { LogEntry } from "./types";
+
+export function printConsole(entry: LogEntry): void {
+
+  if (!loggerConfig.console) {
+    return;
+  }
+
+  console.log(formatLog(entry));
+
+}
+
+================================================================================
+FILE: src\logger\constants.ts
+================================================================================
+export const LOG_FOLDER = "logs";
+
+export const LOG_FILES = {
+  APP: "app.log",
+  ERROR: "error.log",
+  SECURITY: "security.log",
+  DATABASE: "database.log",
+  ACCESS: "access.log",
+  DEBUG: "debug.log",
+  FATAL: "fatal.log",
+};
+
+export const DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
+
+================================================================================
+FILE: src\logger\file.ts
+================================================================================
+import fs from "fs";
+import path from "path";
+import { LOG_FOLDER, LOG_FILES } from "./constants";
+
+export class FileManager {
+  private logDir: string;
+
+  constructor() {
+    this.logDir = path.join(process.cwd(), LOG_FOLDER);
+    this.initialize();
+  }
+
+  private initialize(): void {
+    if (!fs.existsSync(this.logDir)) {
+      fs.mkdirSync(this.logDir, { recursive: true });
+    }
+
+    Object.values(LOG_FILES).forEach((file) => {
+      const filePath = path.join(this.logDir, file);
+
+      if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, "");
+      }
+    });
+  }
+
+  getFilePath(fileName: string): string {
+    return path.join(this.logDir, fileName);
+  }
+}
+
+export const fileManager = new FileManager();
+
+================================================================================
+FILE: src\logger\formatter.ts
+================================================================================
+import { COLORS, EMOJI, RESET } from "./colors";
+import { loggerConfig } from "./config";
+import { LogEntry } from "./types";
+
+export function getTimestamp(): string {
+  const now = new Date();
+
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+
+  const hour = String(now.getHours()).padStart(2, "0");
+  const minute = String(now.getMinutes()).padStart(2, "0");
+  const second = String(now.getSeconds()).padStart(2, "0");
+
+  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
+
+export function formatLog(entry: LogEntry): string {
+  const color = COLORS[entry.level];
+  const emoji = loggerConfig.emoji ? `${EMOJI[entry.level]} ` : "";
+
+  const time = loggerConfig.timestamp
+    ? `[${entry.timestamp}] `
+    : "";
+
+  return `${time}${color}${emoji}${entry.level.padEnd(9)}${RESET} ${entry.message}`;
+}
+
+================================================================================
+FILE: src\logger\helpers.ts
+================================================================================
+export function pad(value: number): string {
+  return value.toString().padStart(2, "0");
+}
+
+export function randomId(length = 8): string {
+
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  let result = "";
+
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(
+      Math.floor(Math.random() * chars.length)
+    );
+  }
+
+  return result;
+}
+
+================================================================================
+FILE: src\logger\index.ts
+================================================================================
+export * from "./logger";
+
+export * from "./timer";
+
+export * from "./request";
+
+export * from "./banner";
+
+export * from "./rotation";
+
+================================================================================
+FILE: src\logger\level.ts
+================================================================================
+
+
+================================================================================
+FILE: src\logger\logger.ts
+================================================================================
+import { getTimestamp } from "./formatter";
+import { printConsole } from "./console";
+import { logWriter } from "./writer";
+import { loggerConfig } from "./config";
+import { LogEntry, LogLevel } from "./types";
+
+export class Logger {
+
+  private log(level: LogLevel, message: string): void {
+
+    const entry: LogEntry = {
+      level,
+      message,
+      timestamp: getTimestamp(),
+    };
+
+    printConsole(entry);
+
+    if (loggerConfig.file) {
+      logWriter.write(entry);
+    }
+  }
+
+  info(message: string): void {
+    this.log("INFO", message);
+  }
+
+  success(message: string): void {
+    this.log("SUCCESS", message);
+  }
+
+  warn(message: string): void {
+    this.log("WARN", message);
+  }
+
+  error(message: string): void {
+    this.log("ERROR", message);
+  }
+
+  debug(message: string): void {
+    this.log("DEBUG", message);
+  }
+
+  security(message: string): void {
+    this.log("SECURITY", message);
+  }
+
+  database(message: string): void {
+    this.log("DATABASE", message);
+  }
+
+  access(message: string): void {
+    this.log("ACCESS", message);
+  }
+
+  fatal(message: string): void {
+    this.log("FATAL", message);
+  }
+
+}
+
+export const logger = new Logger();
+
+================================================================================
+FILE: src\logger\request.ts
+================================================================================
+import { logger } from "./logger";
+
+export interface RequestLog {
+
+  method: string;
+
+  url: string;
+
+  status: number;
+
+  ip?: string;
+
+}
+
+export function logRequest(req: RequestLog): void {
+
+  logger.access(
+    `${req.method} ${req.url} | ${req.status} | ${req.ip ?? "-"}`
+  );
+
+}
+
+================================================================================
+FILE: src\logger\rotation.ts
+================================================================================
+import fs from "fs";
+import path from "path";
+import { LOG_FOLDER } from "./constants";
+
+export function rotateLogs(): void {
+
+  const folder = path.join(process.cwd(), LOG_FOLDER);
+
+  if (!fs.existsSync(folder)) {
+    return;
+  }
+
+  console.log("📦 Log rotation checked.");
+
+}
+
+================================================================================
+FILE: src\logger\timer.ts
+================================================================================
+const timers = new Map<string, number>();
+
+export function startTimer(name: string): void {
+  timers.set(name, Date.now());
+}
+
+export function endTimer(name: string): void {
+
+  const start = timers.get(name);
+
+  if (!start) {
+    console.log(`Timer "${name}" not found.`);
+    return;
+  }
+
+  const duration = Date.now() - start;
+
+  console.log(`⏱ ${name} finished in ${duration} ms`);
+
+  timers.delete(name);
+
+}
+
+================================================================================
+FILE: src\logger\types.ts
+================================================================================
+export type LogLevel =
+  | "INFO"
+  | "SUCCESS"
+  | "WARN"
+  | "ERROR"
+  | "DEBUG"
+  | "SECURITY"
+  | "DATABASE"
+  | "ACCESS"
+  | "FATAL";
+
+export interface LoggerConfig {
+  console: boolean;
+  file: boolean;
+  timestamp: boolean;
+  emoji: boolean;
+}
+
+export interface LogEntry {
+  level: LogLevel;
+  message: string;
+  timestamp: string;
+}
+
+================================================================================
+FILE: src\logger\writer.ts
+================================================================================
+import fs from "fs";
+import { fileManager } from "./file";
+import { LOG_FILES } from "./constants";
+import { LogEntry } from "./types";
+
+export class LogWriter {
+
+  write(entry: LogEntry): void {
+
+    const appLog =
+      fileManager.getFilePath(LOG_FILES.APP);
+
+    fs.appendFileSync(
+      appLog,
+      `[${entry.timestamp}] ${entry.level} ${entry.message}\n`
+    );
+
+    switch (entry.level) {
+
+      case "ERROR":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.ERROR),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+
+      case "SECURITY":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.SECURITY),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+
+      case "DATABASE":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.DATABASE),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+
+      case "ACCESS":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.ACCESS),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+
+      case "DEBUG":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.DEBUG),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+
+      case "FATAL":
+        fs.appendFileSync(
+          fileManager.getFilePath(LOG_FILES.FATAL),
+          `[${entry.timestamp}] ${entry.message}\n`
+        );
+        break;
+    }
+  }
+
+}
+
+export const logWriter = new LogWriter();
+
+================================================================================
+FILE: src\plugins\audit.ts
+================================================================================
+import type { AVSSPlugin } from "./plugin";
+
+export function auditPlugin(): AVSSPlugin {
+  return {
+    name: "Audit",
+
+    setup() {
+      console.log("📋 Audit Plugin Loaded");
+    },
+  };
+}
+
+================================================================================
+FILE: src\plugins\index.ts
+================================================================================
+export * from "./plugin";
+export * from "./logger";
+export * from "./audit";
+
+================================================================================
+FILE: src\plugins\logger.ts
+================================================================================
+import type { AVSSPlugin } from "./plugin";
+
+export function loggerPlugin(): AVSSPlugin {
+  return {
+    name: "Logger",
+
+    setup() {
+      console.log("📝 Logger Plugin Loaded");
+    },
+  };
+}
+
+================================================================================
+FILE: src\plugins\plugin.ts
+================================================================================
+export interface AVSSPlugin {
+  name: string;
+
+  setup(): void;
+}
+
+================================================================================
+FILE: src\prisma\index.ts
+================================================================================
+export * from "./prisma";
+
+================================================================================
+FILE: src\prisma\prisma.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+
+declare global {
+  var prisma: PrismaClient | undefined;
+}
+
+export const prisma =
+  global.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  global.prisma = prisma;
+}
+
+================================================================================
+FILE: src\security\config.ts
+================================================================================
+import type { SecurityConfig } from "./types";
+
+let config: SecurityConfig = {};
+
+export function setSecurityConfig(
+  value: SecurityConfig,
+): void {
+  config = {
+    ...config,
+    ...value,
+  };
+}
+
+export function getSecurityConfig(): Readonly<SecurityConfig> {
+  return Object.freeze({
+    ...config,
+  });
+}
+
+export function resetSecurityConfig(): void {
+  config = {};
+}
+
+================================================================================
+FILE: src\security\constants.ts
+================================================================================
+/**
+ * AVSS Lite Security Framework
+ */
+
+export const SECURITY_NAME = "AVSS Security";
+
+export const SECURITY_VERSION = "1.0.0-alpha";
+
+export const DEFAULT_TOKEN_LENGTH = 64;
+
+export const DEFAULT_RATE_LIMIT = 100;
+
+export const DEFAULT_RATE_WINDOW = 60_000;
+
+export const DEFAULT_COOKIE_NAME = "avss.session";
+
+export const DEFAULT_CSRF_HEADER = "X-CSRF-Token";
+
+export const DEFAULT_CSRF_COOKIE = "avss.csrf";
+
+export const DEFAULT_CONTENT_TYPE = "application/json";
+
+export const DEFAULT_REFERRER_POLICY =
+  "strict-origin-when-cross-origin";
+
+export const DEFAULT_FRAME_OPTIONS = "DENY";
+
+export const DEFAULT_CONTENT_TYPE_OPTIONS = "nosniff";
+
+export const DEFAULT_PERMISSIONS_POLICY =
+  "camera=(), microphone=(), geolocation=()";
+
+================================================================================
+FILE: src\security\cookies\config.ts
+================================================================================
+export interface CookieConfig {
+  httpOnly: boolean;
+  secure: boolean;
+  sameSite: "strict" | "lax" | "none";
+  path: string;
+  maxAge: number;
+}
+
+export const defaultCookieConfig: Readonly<CookieConfig> = {
+  httpOnly: true,
+  secure: true,
+  sameSite: "lax",
+  path: "/",
+  maxAge: 60 * 60 * 24,
+};
+
+================================================================================
+FILE: src\security\cookies\index.ts
+================================================================================
+export * from "./config";
+export * from "./parser";
+
+================================================================================
+FILE: src\security\cookies\parser.ts
+================================================================================
+import {
+  CookieConfig,
+  defaultCookieConfig,
+} from "./config";
+
+export type CookieMap = Record<string, string>;
+
+export function parseCookies(cookieHeader: string): CookieMap {
+  if (!cookieHeader.trim()) {
+    return {};
+  }
+
+  return cookieHeader
+    .split(";")
+    .reduce<CookieMap>((cookies, cookie) => {
+      const index = cookie.indexOf("=");
+
+      if (index === -1) {
+        return cookies;
+      }
+
+      const key = cookie.slice(0, index).trim();
+      const value = cookie.slice(index + 1).trim();
+
+      cookies[key] = decodeURIComponent(value);
+
+      return cookies;
+    }, {});
+}
+
+export function serializeCookie(
+  name: string,
+  value: string,
+  config: CookieConfig = defaultCookieConfig,
+): string {
+  const parts: string[] = [];
+
+  parts.push(`${name}=${encodeURIComponent(value)}`);
+  parts.push(`Path=${config.path}`);
+  parts.push(`Max-Age=${config.maxAge}`);
+
+  if (config.httpOnly) {
+    parts.push("HttpOnly");
+  }
+
+  if (config.secure) {
+    parts.push("Secure");
+  }
+
+  parts.push(`SameSite=${config.sameSite}`);
+
+  return parts.join("; ");
+}
+
+================================================================================
+FILE: src\security\cors\config.ts
+================================================================================
+export interface CorsConfig {
+  enabled: boolean;
+  origin: string | string[];
+  methods: string[];
+  headers: string[];
+  credentials: boolean;
+  maxAge: number;
+}
+
+export const defaultCorsConfig: Readonly<CorsConfig> = {
+  enabled: true,
+
+  origin: "*",
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+  ],
+
+  headers: [
+    "Content-Type",
+    "Authorization",
+    "X-CSRF-Token",
+  ],
+
+  credentials: true,
+
+  maxAge: 86400,
+};
+
+================================================================================
+FILE: src\security\cors\index.ts
+================================================================================
+export * from "./config";
+export * from "./middleware";
+
+================================================================================
+FILE: src\security\cors\middleware.ts
+================================================================================
+import {
+  CorsConfig,
+  defaultCorsConfig,
+} from "./config";
+
+export interface CorsHeaders {
+  [key: string]: string;
+}
+
+export function createCorsHeaders(
+  config: CorsConfig = defaultCorsConfig,
+): Readonly<CorsHeaders> {
+  if (!config.enabled) {
+    return {};
+  }
+
+  return Object.freeze({
+    "Access-Control-Allow-Origin":
+      Array.isArray(config.origin)
+        ? config.origin.join(",")
+        : config.origin,
+
+    "Access-Control-Allow-Methods":
+      config.methods.join(","),
+
+    "Access-Control-Allow-Headers":
+      config.headers.join(","),
+
+    "Access-Control-Allow-Credentials":
+      String(config.credentials),
+
+    "Access-Control-Max-Age":
+      String(config.maxAge),
+  });
+}
+
+================================================================================
+FILE: src\security\csrf\config.ts
+================================================================================
+export interface CsrfConfig {
+  /**
+   * Header yang digunakan untuk mengirim CSRF token.
+   */
+  headerName: string;
+
+  /**
+   * Panjang token yang dihasilkan.
+   */
+  tokenLength: number;
+
+  /**
+   * Mengaktifkan validasi CSRF.
+   */
+  enabled: boolean;
+}
+
+export const defaultCsrfConfig: Readonly<CsrfConfig> = {
+  headerName: "x-csrf-token",
+  tokenLength: 32,
+  enabled: true,
+};
+
+================================================================================
+FILE: src\security\csrf\index.ts
+================================================================================
+export * from "./config";
+export * from "./token";
+export * from "./middleware";
+
+================================================================================
+FILE: src\security\csrf\middleware.ts
+================================================================================
+import { CsrfConfig, defaultCsrfConfig } from "./config";
+
+export interface CsrfRequest {
+  headers: Record<string, string | undefined>;
+  csrfToken: string;
+}
+
+export interface CsrfResult {
+  success: boolean;
+  message: string;
+}
+
+export function csrfMiddleware(
+  request: CsrfRequest,
+  config: CsrfConfig = defaultCsrfConfig,
+): CsrfResult {
+  if (!config.enabled) {
+    return {
+      success: true,
+      message: "CSRF Disabled",
+    };
+  }
+
+  const token = request.headers[config.headerName];
+
+  if (!token) {
+    return {
+      success: false,
+      message: "Missing CSRF Token",
+    };
+  }
+
+  if (token !== request.csrfToken) {
+    return {
+      success: false,
+      message: "Invalid CSRF Token",
+    };
+  }
+
+  return {
+    success: true,
+    message: "CSRF Verified",
+  };
+}
+
+================================================================================
+FILE: src\security\csrf\token.ts
+================================================================================
+import { randomBytes } from "node:crypto";
+import { CsrfConfig, defaultCsrfConfig } from "./config";
+
+export function generateCsrfToken(
+  config: CsrfConfig = defaultCsrfConfig,
+): string {
+  return randomBytes(config.tokenLength).toString("hex");
+}
+
+export function validateCsrfToken(
+  token: string,
+  expected: string,
+): boolean {
+  return token.length > 0 && token === expected;
+}
+
+================================================================================
+FILE: src\security\headers\builder.ts
+================================================================================
+import { defaultHeaderConfig, HeaderConfig } from "./config";
+import { DEFAULT_SECURITY_HEADERS } from "./defaults";
+
+export class SecurityHeadersBuilder {
+  private readonly headers = new Map<string, string>();
+
+  static create(): SecurityHeadersBuilder {
+    return new SecurityHeadersBuilder();
+  }
+
+  withDefaults(
+    config: HeaderConfig = defaultHeaderConfig,
+  ): SecurityHeadersBuilder {
+    if (config.contentSecurityPolicy) {
+      this.headers.set(
+        "Content-Security-Policy",
+        DEFAULT_SECURITY_HEADERS["Content-Security-Policy"],
+      );
+    }
+
+    if (config.strictTransportSecurity) {
+      this.headers.set(
+        "Strict-Transport-Security",
+        DEFAULT_SECURITY_HEADERS["Strict-Transport-Security"],
+      );
+    }
+
+    if (config.frameOptions) {
+      this.headers.set(
+        "X-Frame-Options",
+        DEFAULT_SECURITY_HEADERS["X-Frame-Options"],
+      );
+    }
+
+    if (config.contentTypeOptions) {
+      this.headers.set(
+        "X-Content-Type-Options",
+        DEFAULT_SECURITY_HEADERS["X-Content-Type-Options"],
+      );
+    }
+
+    if (config.referrerPolicy) {
+      this.headers.set(
+        "Referrer-Policy",
+        DEFAULT_SECURITY_HEADERS["Referrer-Policy"],
+      );
+    }
+
+    if (config.permissionsPolicy) {
+      this.headers.set(
+        "Permissions-Policy",
+        DEFAULT_SECURITY_HEADERS["Permissions-Policy"],
+      );
+    }
+
+    return this;
+  }
+
+  add(name: string, value: string): SecurityHeadersBuilder {
+    this.headers.set(name, value);
+    return this;
+  }
+
+  remove(name: string): SecurityHeadersBuilder {
+    this.headers.delete(name);
+    return this;
+  }
+
+  build(): Readonly<Record<string, string>> {
+    return Object.freeze(
+      Object.fromEntries(this.headers),
+    );
+  }
+}
+
+================================================================================
+FILE: src\security\headers\config.ts
+================================================================================
+export interface HeaderConfig {
+  contentSecurityPolicy: boolean;
+  strictTransportSecurity: boolean;
+  frameOptions: boolean;
+  contentTypeOptions: boolean;
+  referrerPolicy: boolean;
+  permissionsPolicy: boolean;
+}
+
+export const defaultHeaderConfig: Readonly<HeaderConfig> = {
+  contentSecurityPolicy: true,
+  strictTransportSecurity: true,
+  frameOptions: true,
+  contentTypeOptions: true,
+  referrerPolicy: true,
+  permissionsPolicy: true,
+};
+
+================================================================================
+FILE: src\security\headers\defaults.ts
+================================================================================
+export const DEFAULT_SECURITY_HEADERS = {
+  "Content-Security-Policy":
+    "default-src 'self'; object-src 'none'; frame-ancestors 'none';",
+
+  "Strict-Transport-Security":
+    "max-age=31536000; includeSubDomains",
+
+  "X-Frame-Options":
+    "DENY",
+
+  "X-Content-Type-Options":
+    "nosniff",
+
+  "Referrer-Policy":
+    "strict-origin-when-cross-origin",
+
+  "Permissions-Policy":
+    "camera=(), microphone=(), geolocation=()",
+} as const;
+
+================================================================================
+FILE: src\security\headers\index.ts
+================================================================================
+export * from "./builder";
+export * from "./config";
+export * from "./defaults";
+
+================================================================================
+FILE: src\security\index.ts
+================================================================================
+export * from "./config";
+export * from "./constants";
+export * from "./types";
+export * from "./security";
+
+export * from "./csrf";
+export * from "./xss";
+export * from "./headers";
+export * from "./cors";
+export * from "./cookies";
+export * from "./proxy";
+export * from "./rate-limit";
+
+================================================================================
+FILE: src\security\proxy\config.ts
+================================================================================
+export interface ProxyConfig {
+  enabled: boolean;
+  trustedProxies: string[];
+  trustForwardedHost: boolean;
+  trustForwardedProto: boolean;
+}
+
+export const defaultProxyConfig: Readonly<ProxyConfig> = {
+  enabled: true,
+
+  trustedProxies: [
+    "127.0.0.1",
+    "::1",
+  ],
+
+  trustForwardedHost: true,
+
+  trustForwardedProto: true,
+};
+
+================================================================================
+FILE: src\security\proxy\index.ts
+================================================================================
+export * from "./config";
+export * from "./trusted";
+
+================================================================================
+FILE: src\security\proxy\trusted.ts
+================================================================================
+import {
+  ProxyConfig,
+  defaultProxyConfig,
+} from "./config";
+
+export interface ProxyHeaders {
+  "x-forwarded-for"?: string;
+  "x-forwarded-host"?: string;
+  "x-forwarded-proto"?: string;
+}
+
+export interface ProxyInfo {
+  clientIp: string;
+  host?: string;
+  protocol?: string;
+}
+
+export function getProxyInfo(
+  headers: ProxyHeaders,
+  config: ProxyConfig = defaultProxyConfig,
+): ProxyInfo {
+  if (!config.enabled) {
+    return {
+      clientIp: "127.0.0.1",
+    };
+  }
+
+  const forwardedFor =
+    headers["x-forwarded-for"]?.split(",")[0]?.trim() ??
+    "127.0.0.1";
+
+  return {
+    clientIp: forwardedFor,
+
+    host: config.trustForwardedHost
+      ? headers["x-forwarded-host"]
+      : undefined,
+
+    protocol: config.trustForwardedProto
+      ? headers["x-forwarded-proto"]
+      : undefined,
+  };
+}
+
+export function isTrustedProxy(
+  ip: string,
+  config: ProxyConfig = defaultProxyConfig,
+): boolean {
+  return config.trustedProxies.includes(ip);
+}
+
+================================================================================
+FILE: src\security\rate-limit\config.ts
+================================================================================
+export interface RateLimitConfig {
+  enabled: boolean;
+  windowMs: number;
+  maxRequests: number;
+}
+
+export const defaultRateLimitConfig: Readonly<RateLimitConfig> = {
+  enabled: true,
+  windowMs: 60_000,
+  maxRequests: 100,
+};
+
+================================================================================
+FILE: src\security\rate-limit\index.ts
+================================================================================
+export * from "./config";
+export * from "./memory";
+export * from "./middleware";
+
+
+================================================================================
+FILE: src\security\rate-limit\memory.ts
+================================================================================
+export interface RateLimitEntry {
+  count: number;
+  resetAt: number;
+}
+
+export interface RateLimiterOptions {
+  limit: number;
+  windowMs: number;
+}
+
+export interface RateLimitResult {
+  allowed: boolean;
+  remaining: number;
+  reset: number;
+}
+
+export class MemoryStore {
+  private readonly store = new Map<string, RateLimitEntry>();
+
+  get(key: string): RateLimitEntry | undefined {
+    return this.store.get(key);
+  }
+
+  set(key: string, value: RateLimitEntry): void {
+    this.store.set(key, value);
+  }
+
+  delete(key: string): void {
+    this.store.delete(key);
+  }
+
+  clear(): void {
+    this.store.clear();
+  }
+
+  keys(): string[] {
+    return [...this.store.keys()];
+  }
+
+  size(): number {
+    return this.store.size;
+  }
+}
+
+export class RateLimiter {
+  private readonly store = new MemoryStore();
+
+  constructor(
+    private readonly options: RateLimiterOptions,
+  ) {}
+
+  consume(key: string): RateLimitResult {
+    const now = Date.now();
+
+    let entry = this.store.get(key);
+
+    if (!entry || now >= entry.resetAt) {
+      entry = {
+        count: 0,
+        resetAt: now + this.options.windowMs,
+      };
+    }
+
+    entry.count++;
+
+    this.store.set(key, entry);
+
+    return {
+      allowed: entry.count <= this.options.limit,
+      remaining: Math.max(
+        0,
+        this.options.limit - entry.count,
+      ),
+      reset: entry.resetAt,
+    };
+  }
+
+  stats() {
+    return {
+      keys: this.store.size(),
+      limit: this.options.limit,
+      windowMs: this.options.windowMs,
+    };
+  }
+
+  keys(): string[] {
+    return this.store.keys();
+  }
+
+  clear(): void {
+    this.store.clear();
+  }
+}
+
+================================================================================
+FILE: src\security\rate-limit\middleware.ts
+================================================================================
+import {
+  defaultRateLimitConfig,
+  RateLimitConfig,
+} from "./config";
+
+import {
+  MemoryStore,
+  RateLimitEntry,
+} from "./memory";
+
+const memoryStore = new MemoryStore();
+
+interface RateLimitResult {
+  success: boolean;
+  remaining: number;
+  retryAfter: number;
+}
+
+export function rateLimit(
+  key: string,
+  config: RateLimitConfig = defaultRateLimitConfig,
+): RateLimitResult {
+  if (!config.enabled) {
+    return {
+      success: true,
+      remaining: config.maxRequests,
+      retryAfter: 0,
+    };
+  }
+
+  const now = Date.now();
+
+  let entry: RateLimitEntry | undefined =
+    memoryStore.get(key);
+
+  if (!entry || now >= entry.resetAt) {
+    entry = {
+      count: 0,
+      resetAt: now + config.windowMs,
+    };
+  }
+
+  entry.count++;
+
+  memoryStore.set(key, entry);
+
+  const remaining = Math.max(
+    config.maxRequests - entry.count,
+    0,
+  );
+
+  if (entry.count > config.maxRequests) {
+    return {
+      success: false,
+      remaining: 0,
+      retryAfter: Math.ceil(
+        (entry.resetAt - now) / 1000,
+      ),
+    };
+  }
+
+  return {
+    success: true,
+    remaining,
+    retryAfter: 0,
+  };
+}
+
+================================================================================
+FILE: src\security\security.ts
+================================================================================
+import { setSecurityConfig } from "./config";
+import type { SecurityConfig } from "./types";
+
+import {
+  generateCsrfToken,
+  validateCsrfToken,
+  csrfMiddleware,
+} from "./csrf";
+
+import { sanitize } from "./xss";
+
+import { SecurityHeadersBuilder } from "./headers";
+
+import { createCorsHeaders } from "./cors";
+
+import {
+  parseCookies,
+  serializeCookie,
+} from "./cookies";
+
+import {
+  getProxyInfo,
+  isTrustedProxy,
+} from "./proxy";
+
+import { rateLimit } from "./rate-limit";
+
+export class SecurityFramework {
+  constructor(config: SecurityConfig = {}) {
+    setSecurityConfig(config);
+  }
+
+  public readonly csrf = {
+    generateToken: generateCsrfToken,
+    validateToken: validateCsrfToken,
+    middleware: csrfMiddleware,
+  };
+
+  public readonly xss = {
+    sanitize,
+  };
+
+  public readonly headers = {
+    builder: () =>
+      SecurityHeadersBuilder.create().withDefaults(),
+  };
+
+  public readonly cors = {
+    createHeaders: createCorsHeaders,
+  };
+
+  public readonly cookies = {
+    parse: parseCookies,
+    serialize: serializeCookie,
+  };
+
+  public readonly proxy = {
+    info: getProxyInfo,
+    trusted: isTrustedProxy,
+  };
+
+  public readonly rateLimit = {
+    check: rateLimit,
+  };
+}
+
+export function createSecurity(
+  config: SecurityConfig = {},
+): SecurityFramework {
+  return new SecurityFramework(config);
+}
+
+================================================================================
+FILE: src\security\test-security.ts
+================================================================================
+import { createSecurity } from "./security";
+
+console.log("========================================");
+console.log("      AVSS SECURITY FRAMEWORK TEST");
+console.log("========================================");
+
+const security = createSecurity();
+
+//
+// CSRF
+//
+
+console.log("\n========== CSRF ==========\n");
+
+const token = security.csrf.generateToken();
+
+console.log("Generated Token:");
+console.log(token);
+
+console.log("\nValidate:");
+
+console.log(
+  security.csrf.validateToken(token, token),
+);
+
+console.log("\nMiddleware:");
+
+console.log(
+  security.csrf.middleware({
+    headers: {
+      "x-csrf-token": token,
+    },
+    csrfToken: token,
+  }),
+);
+
+//
+// XSS
+//
+
+console.log("\n========== XSS ==========\n");
+
+const html = `<script>alert("AVSS")</script>`;
+
+console.log("Original:");
+console.log(html);
+
+console.log("\nSanitized:");
+
+console.log(
+  security.xss.sanitize(html),
+);
+
+//
+// HEADERS
+//
+
+console.log("\n========== HEADERS ==========\n");
+
+console.log(
+  security.headers
+    .builder()
+    .build(),
+);
+
+//
+// CORS
+//
+
+console.log("\n========== CORS ==========\n");
+
+console.log(
+  security.cors.createHeaders(),
+);
+
+//
+// COOKIES
+//
+
+console.log("\n========== COOKIES ==========\n");
+
+const cookie = security.cookies.serialize(
+  "session",
+  "abc123",
+);
+
+console.log("Serialized:");
+
+console.log(cookie);
+
+console.log("\nParsed:");
+
+console.log(
+  security.cookies.parse(cookie),
+);
+
+//
+// PROXY
+//
+
+console.log("\n========== PROXY ==========\n");
+
+console.log(
+  security.proxy.info({
+    "x-forwarded-for": "192.168.1.10",
+    "x-forwarded-host": "localhost:3000",
+    "x-forwarded-proto": "https",
+  }),
+);
+
+console.log("\nTrusted:");
+
+console.log(
+  security.proxy.trusted("127.0.0.1"),
+);
+
+//
+// RATE LIMIT
+//
+
+console.log("\n========== RATE LIMIT ==========\n");
+
+for (let i = 1; i <= 3; i++) {
+  console.log(
+    `Request ${i}`,
+    security.rateLimit.check("127.0.0.1"),
+  );
+}
+
+console.log("\n========================================");
+console.log(" ALL SECURITY TEST PASSED ");
+console.log("========================================");
+
+================================================================================
+FILE: src\security\types.ts
+================================================================================
+import type { CsrfConfig } from "./csrf";
+import type { XssConfig } from "./xss";
+import type { HeaderConfig } from "./headers";
+import type { CorsConfig } from "./cors";
+import type { CookieConfig } from "./cookies";
+import type { ProxyConfig } from "./proxy";
+import type { RateLimitConfig } from "./rate-limit";
+
+export interface SecurityConfig {
+  csrf?: Partial<CsrfConfig>;
+  xss?: Partial<XssConfig>;
+  headers?: Partial<HeaderConfig>;
+  cors?: Partial<CorsConfig>;
+  cookies?: Partial<CookieConfig>;
+  proxy?: Partial<ProxyConfig>;
+  rateLimit?: Partial<RateLimitConfig>;
+}
+
+export interface SecurityModule {
+  readonly name: string;
+  readonly version: string;
+}
+
+export interface SecurityResult {
+  success: boolean;
+  message: string;
+}
+
+export interface ClientInfo {
+  ip: string;
+  host?: string;
+  protocol?: string;
+}
+
+export interface SecurityHeaders {
+  [key: string]: string;
+}
+
+================================================================================
+FILE: src\security\version.ts
+================================================================================
+export const FRAMEWORK_NAME = "AVSS Lite";
+
+export const SECURITY_PACKAGE = "@avss/security";
+
+export const SECURITY_VERSION = "1.0.0-alpha";
+
+================================================================================
+FILE: src\security\xss\config.ts
+================================================================================
+export interface XssConfig {
+  enabled: boolean;
+  escapeHtml: boolean;
+  trimInput: boolean;
+}
+
+export const defaultXssConfig: Readonly<XssConfig> = {
+  enabled: true,
+  escapeHtml: true,
+  trimInput: true,
+};
+
+================================================================================
+FILE: src\security\xss\escape.ts
+================================================================================
+const HTML_ESCAPE_MAP: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+  "/": "&#x2F;",
+};
+
+export function escapeHtml(value: string): string {
+  return value.replace(/[&<>"'/]/g, (character) => HTML_ESCAPE_MAP[character]);
+}
+
+================================================================================
+FILE: src\security\xss\index.ts
+================================================================================
+export * from "./config";
+export * from "./escape";
+export * from "./sanitizer";
+
+================================================================================
+FILE: src\security\xss\sanitizer.ts
+================================================================================
+import { defaultXssConfig, XssConfig } from "./config";
+import { escapeHtml } from "./escape";
+
+export function sanitize(
+  input: string,
+  config: XssConfig = defaultXssConfig,
+): string {
+  if (!config.enabled) {
+    return input;
+  }
+
+  let value = input;
+
+  if (config.trimInput) {
+    value = value.trim();
+  }
+
+  if (config.escapeHtml) {
+    value = escapeHtml(value);
+  }
+
+  return value;
+}
+
+================================================================================
+FILE: src\terminal\banner.ts
+================================================================================
+export function banner(): void {
+  console.log("AVSS Lite");
+}
+
+================================================================================
+FILE: src\terminal\box.ts
+================================================================================
+export function box(
+  title: string,
+  width = 54,
+): void {
+  const line = "═".repeat(width);
+
+  console.log(`╔${line}╗`);
+
+  console.log(
+    `║${title.padStart((width + title.length) / 2).padEnd(width)}║`,
+  );
+
+  console.log(`╚${line}╝`);
+}
+
+================================================================================
+FILE: src\terminal\colors.ts
+================================================================================
+export const Colors = {
+  reset: "\x1b[0m",
+};
+
+================================================================================
+FILE: src\terminal\divider.ts
+================================================================================
+export function divider(
+  char = "─",
+  length = 54,
+): void {
+  console.log(char.repeat(length));
+}
+
+================================================================================
+FILE: src\terminal\footer.ts
+================================================================================
+import { divider } from "./divider";
+import { info } from "./status";
+
+export interface FooterOptions {
+  framework: string;
+  version: string;
+  runtime?: string;
+  status?: string;
+}
+
+export function footer({
+  framework,
+  version,
+  runtime = process.version,
+  status = "SUCCESS",
+}: FooterOptions): void {
+  divider();
+
+  info(`Framework : ${framework}`);
+  info(`Version   : ${version}`);
+  info(`Runtime   : ${runtime}`);
+  info(`Status    : ${status}`);
+
+  divider();
+
+  console.log("\n🚀 READY FOR PRODUCTION\n");
+}
+
+================================================================================
+FILE: src\terminal\header.ts
+================================================================================
+export function header(title: string): void {
+  console.log(title);
+}
+
+================================================================================
+FILE: src\terminal\index.ts
+================================================================================
+export * from "./banner";
+export * from "./box";
+export * from "./colors";
+export * from "./divider";
+export * from "./footer";
+export * from "./header";
+export * from "./output";
+export * from "./progress";
+export * from "./section";
+export * from "./spinner";
+export * from "./status";
+export * from "./symbols";
+export * from "./table";
+export * from "./timer";
+export * from "./tree";
+
+
+================================================================================
+FILE: src\terminal\output.ts
+================================================================================
+import { success, error, warning, info } from "./status";
+
+export const output = {
+  success,
+  error,
+  warning,
+  info,
+};
+
+================================================================================
+FILE: src\terminal\progress.ts
+================================================================================
+export function progress(
+  current = 1,
+  total = 1,
+  width = 30,
+): void {
+  const percent = Math.round((current / total) * 100);
+
+  const filled = Math.round((percent / 100) * width);
+
+  const empty = width - filled;
+
+  const bar =
+    "█".repeat(filled) +
+    "░".repeat(empty);
+
+  console.log(`[${bar}] ${percent}%`);
+}
+
+================================================================================
+FILE: src\terminal\section.ts
+================================================================================
+export function section(title: string): void {
+  console.log(`\n▶ ${title}\n`);
+}
+
+================================================================================
+FILE: src\terminal\spinner.ts
+================================================================================
+import ora, { Ora } from "ora";
+
+export class Spinner {
+  private spinner: Ora;
+
+  constructor(text = "Loading...") {
+    this.spinner = ora(text);
+  }
+
+  start(): void {
+    this.spinner.start();
+  }
+
+  success(text?: string): void {
+    this.spinner.succeed(text);
+  }
+
+  fail(text?: string): void {
+    this.spinner.fail(text);
+  }
+
+  warn(text?: string): void {
+    this.spinner.warn(text);
+  }
+
+  info(text?: string): void {
+    this.spinner.info(text);
+  }
+
+  stop(): void {
+    this.spinner.stop();
+  }
+}
+
+================================================================================
+FILE: src\terminal\status.ts
+================================================================================
+import { Symbols } from "./symbols";
+
+export function success(message: string): void {
+  console.log(`   ${Symbols.success} ${message}`);
+}
+
+export function error(message: string): void {
+  console.log(`   ${Symbols.error} ${message}`);
+}
+
+export function warning(message: string): void {
+  console.log(`   ${Symbols.warning} ${message}`);
+}
+
+export function info(message: string): void {
+  console.log(`   ${Symbols.info} ${message}`);
+}
+
+export function pass(message: string): void {
+  success(message);
+}
+
+export function fail(message: string): void {
+  error(message);
+}
+
+================================================================================
+FILE: src\terminal\symbols.ts
+================================================================================
+export const Symbols = {
+  success: "✔",
+  error: "✖",
+  warning: "⚠",
+  info: "ℹ",
+  section: "▶",
+  star: "★",
+  rocket: "🚀",
+  check: "✅",
+} as const;
+
+================================================================================
+FILE: src\terminal\table.ts
+================================================================================
+export function table(): void {
+  console.table([]);
+}
+
+================================================================================
+FILE: src\terminal\test.terminal.ts
+================================================================================
+import {
+  box,
+  divider,
+  footer,
+  info,
+  progress,
+  section,
+  Spinner,
+  success,
+  Timer,
+  tree,
+  warning,
+  error,
+} from "./index";
+
+async function main(): Promise<void> {
+  const timer = new Timer();
+  timer.reset();
+
+  box("AVSS TERMINAL ENGINE");
+
+  console.log();
+
+  const spinner = new Spinner("Loading AVSS Lite Framework...");
+
+  spinner.start();
+
+  await new Promise((resolve) => setTimeout(resolve, 1200));
+
+  spinner.success("Framework Loaded");
+
+  console.log();
+
+  section("Core Modules");
+
+  const modules = [
+    "Authentication",
+    "Security",
+    "Logger",
+    "Plugins",
+    "Errors",
+    "Doctor CLI",
+    "Terminal",
+  ];
+
+  for (const module of modules) {
+    success(module);
+
+    // Selalu tampil 100%
+    progress(1, 1);
+
+    console.log();
+  }
+
+  divider();
+
+  section("Framework Structure");
+
+  tree("AVSS Lite", modules);
+
+  divider();
+
+  info("Framework : AVSS Lite");
+  info("Version   : v1.0.0-alpha");
+  info(`Runtime   : ${process.version}`);
+
+  console.log();
+
+  warning("No Warning Detected");
+  error("Example Error Output");
+
+  console.log();
+
+  console.log(`Completed in ${timer.elapsed()} ms`);
+
+  footer({
+    framework: "AVSS Lite",
+    version: "v1.0.0-alpha",
+  });
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\terminal\timer.ts
+================================================================================
+export class Timer {
+  private startTime = Date.now();
+
+  reset(): void {
+    this.startTime = Date.now();
+  }
+
+  elapsed(): number {
+    return Date.now() - this.startTime;
+  }
+}
+
+================================================================================
+FILE: src\terminal\tree.ts
+================================================================================
+export function tree(title: string, items: string[]): void {
+  console.log(`\n${title}\n`);
+
+  items.forEach((item, index) => {
+    const last = index === items.length - 1;
+
+    console.log(
+      `${last ? "└──" : "├──"} ${item}`,
+    );
+  });
+
+  console.log();
+}
+
+================================================================================
+FILE: src\terminal\types.ts
+================================================================================
+export type StatusType =
+  | "success"
+  | "error"
+  | "warning"
+  | "info"
+  | "section";
+
+export interface BoxOptions {
+  width?: number;
+  padding?: number;
+}
+
+export interface DividerOptions {
+  char?: string;
+  length?: number;
+}
+
+export interface StatusOptions {
+  icon?: boolean;
+}
+
+================================================================================
+FILE: src\terminal\utils.ts
+================================================================================
+export function center(text: string, width = 54): string {
+  const left = Math.floor((width - text.length) / 2);
+
+  return " ".repeat(Math.max(0, left)) + text;
+}
+
+export function repeat(char: string, length: number): string {
+  return char.repeat(length);
+}
+
+export function pad(text: string, length = 20): string {
+  return text.padEnd(length);
+}
+
+================================================================================
+FILE: src\terminal\version.ts
+================================================================================
+export const TERMINAL_NAME = "AVSS Terminal";
+
+export const TERMINAL_VERSION = "1.0.0-alpha";
+
+================================================================================
+FILE: src\test.ts
+================================================================================
+import {
+  hashPassword,
+  verifyPassword,
+  needsRehash,
+  generatePassword,
+} from "./auth/password";
+
+async function test() {
+  const password = "AvidevSecure121zone";
+
+  const hash = await hashPassword(password);
+
+  console.log("========== AVSS Lite Test ==========");
+  console.log("Password      :", password);
+  console.log("Hash          :", hash);
+
+  const verified = await verifyPassword(password, hash);
+  console.log("Verify        :", verified);
+
+  const rehash = await needsRehash(hash);
+  console.log("Needs Rehash  :", rehash);
+console.log(
+  "Generated Password:",
+  generatePassword()
+);
+  console.log("====================================");
+}
+test().catch(console.error);
+
+
+
+================================================================================
+FILE: src\test-adapter.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+import { createAdapter } from "./auth";
+
+const prisma = new PrismaClient();
+
+const adapter = createAdapter(prisma);
+
+console.log("Adapter Created :", adapter !== undefined);
+console.log("Prisma Instance :", adapter.prisma instanceof PrismaClient);
+
+================================================================================
+FILE: src\test-auth.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+import { createAuth } from "./auth";
+
+const prisma = new PrismaClient();
+
+console.log("========== AUTH ==========\n");
+
+const auth = createAuth({
+  prisma,
+});
+
+console.log("Handler :", typeof auth.handler);
+
+console.log("API :", Object.keys(auth.api).length);
+
+console.log("\n==========================");
+
+================================================================================
+FILE: src\test-better-auth.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+import { createAuth } from "./auth";
+
+const prisma = new PrismaClient();
+
+const auth = createAuth({
+  prisma,
+});
+
+console.log("========== BETTER AUTH ==========\n");
+
+console.log(auth);
+
+console.log("\n=================================");
+
+================================================================================
+FILE: src\test-config.ts
+================================================================================
+import { PrismaClient } from "@prisma/client";
+import { getConfig, setConfig } from "./auth";
+
+const prisma = new PrismaClient();
+
+setConfig({
+  prisma,
+});
+
+const config = getConfig();
+
+console.log("========== CONFIG ==========\n");
+
+console.log("Prisma :", config.prisma.constructor.name);
+
+console.log(
+  "Plugins :",
+  config.plugins?.length ?? 0
+);
+
+console.log("\n============================");
+
+================================================================================
+FILE: src\test-cors.ts
+================================================================================
+import { createSecurity } from "./security";
+
+const security = createSecurity();
+
+console.log("========== SECURITY ==========");
+
+console.table(
+  security.headers
+    .builder()
+    .build()
+);
+
+console.log("========== CORS ==========");
+
+console.table(
+  security.cors.createHeaders({
+    enabled: true,
+    origin: "http://localhost:3000",
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+    ],
+    headers: [
+      "Content-Type",
+      "Authorization",
+      "X-CSRF-Token",
+    ],
+    credentials: true,
+    maxAge: 86400,
+  })
+);
+
+================================================================================
+FILE: src\test-env.ts
+================================================================================
+import { validateEnv } from "./env";
+
+try {
+  const env = validateEnv();
+
+  console.log("✅ ENV VALID");
+  console.log(env);
+} catch (error) {
+  console.error("❌ ENV INVALID");
+  console.error(error);
+}
+
+================================================================================
+FILE: src\test-errors.ts
+================================================================================
+import {
+  UnauthorizedError,
+  ForbiddenError,
+  ValidationError,
+  SessionExpiredError,
+  InternalServerError,
+  errorHandler,
+} from "./errors";
+
+console.log("========== ERROR SYSTEM ==========\n");
+
+console.log(errorHandler(new UnauthorizedError()));
+console.log();
+
+console.log(errorHandler(new ForbiddenError()));
+console.log();
+
+console.log(errorHandler(new ValidationError()));
+console.log();
+
+console.log(errorHandler(new SessionExpiredError()));
+console.log();
+
+console.log(errorHandler(new InternalServerError()));
+console.log();
+
+console.log("✅ Error System Loaded");
+
+================================================================================
+FILE: src\test-headers.ts
+================================================================================
+import { createSecurity } from "./security";
+
+const security = createSecurity();
+
+console.log("========== SECURITY HEADERS ==========");
+
+console.table(
+  security.headers
+    .builder()
+    .build()
+);
+
+================================================================================
+FILE: src\test-logger.ts
+================================================================================
+import { logger } from "./logger";
+
+console.log("");
+console.log("========================================");
+console.log("       AVSS LOGGER TEST");
+console.log("========================================");
+console.log("");
+
+logger.info("Server Started");
+logger.success("User Login Success");
+logger.warn("Unauthorized Access");
+logger.error("Database Connection Failed");
+logger.debug("Session Created");
+logger.security("SQL Injection Attempt Detected");
+logger.database("Connected to PostgreSQL");
+logger.access("GET /api/users");
+logger.fatal("Unexpected Application Crash");
+
+console.log("");
+console.log("========================================");
+console.log("      ALL TESTS COMPLETED");
+console.log("========================================");
+console.log("");
+
+================================================================================
+FILE: src\test-password.ts
+================================================================================
+import {
+  hashPassword,
+  verifyPassword,
+  needsRehash,
+  generatePassword,
+} from "./auth";
+
+async function main() {
+  const password = "AvssLite123!";
+
+  console.log("========== AVSS Lite Password ==========\n");
+
+  console.log("Password:");
+  console.log(password);
+
+  const hash = await hashPassword(password);
+
+  console.log("\nHash:");
+  console.log(hash);
+
+  const verified = await verifyPassword(
+    password,
+    hash
+  );
+
+  console.log("\nVerify:");
+  console.log(verified);
+
+  const rehash = await needsRehash(hash);
+
+  console.log("\nNeeds Rehash:");
+  console.log(rehash);
+
+  console.log("\nGenerated Password:");
+  console.log(generatePassword());
+
+  console.log("\n========================================");
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\test-plugin.ts
+================================================================================
+import {
+  loggerPlugin,
+  auditPlugin,
+} from "./plugins";
+
+console.log("========== PLUGINS ==========\n");
+
+const logger = loggerPlugin();
+const audit = auditPlugin();
+
+logger.setup();
+audit.setup();
+
+console.log();
+
+console.log("Logger :", logger.name);
+console.log("Audit  :", audit.name);
+
+console.log("\n=============================");
+
+================================================================================
+FILE: src\test-proxy.ts
+================================================================================
+import {
+  authMiddleware,
+  guestMiddleware,
+  roleMiddleware,
+  Role,
+} from "./auth";
+
+console.log("========== MIDDLEWARE ==========\n");
+
+const admin = {
+  id: "1",
+  role: Role.ADMIN,
+};
+
+const user = {
+  id: "2",
+  role: Role.USER,
+};
+
+console.log("Auth Admin");
+console.log(authMiddleware(admin));
+
+console.log();
+
+console.log("Auth Guest");
+console.log(authMiddleware(null));
+
+console.log();
+
+console.log("Role Admin");
+console.log(
+  roleMiddleware(admin, [
+    Role.ADMIN,
+    Role.SUPER_ADMIN,
+  ])
+);
+
+console.log();
+
+console.log("Role User");
+console.log(
+  roleMiddleware(user, [
+    Role.ADMIN,
+  ])
+);
+
+console.log();
+
+console.log("Guest");
+console.log(guestMiddleware(null));
+
+console.log();
+
+console.log("Guest Failed");
+console.log(guestMiddleware(admin));
+
+console.log("\n===============================");
+
+================================================================================
+FILE: src\test-rate-limit.ts
+================================================================================
+import { RateLimiter } from "./index";
+
+async function main(): Promise<void> {
+
+    console.clear();
+
+    console.log("========================================");
+    console.log("      AVSS RATE LIMIT FRAMEWORK");
+    console.log("========================================\n");
+
+    const limiter = new RateLimiter({
+        limit: 5,
+        windowMs: 10_000,
+    });
+
+    const key = "127.0.0.1";
+
+    console.log("Limit :", 5);
+    console.log("Window:", "10 Seconds");
+
+    console.log("\n----------------------------------------\n");
+
+    for (let i = 1; i <= 6; i++) {
+
+        const result = limiter.consume(key);
+
+        console.log(
+            `Request ${i}`.padEnd(15),
+            ":",
+            result.allowed ? "✔ Allowed" : "❌ Blocked",
+        );
+
+        console.log(
+            "Remaining".padEnd(15),
+            ":",
+            result.remaining,
+        );
+
+        console.log(
+            "Reset".padEnd(15),
+            ":",
+            new Date(result.reset).toLocaleTimeString(),
+        );
+
+        console.log();
+
+    }
+
+    console.log("----------------------------------------");
+
+    console.log(
+        "Stats :",
+        limiter.stats(),
+    );
+
+    console.log(
+        "Keys  :",
+        limiter.keys(),
+    );
+
+    limiter.clear();
+
+    console.log(
+        "\nClear :",
+        limiter.stats(),
+    );
+
+    console.log("\n========================================");
+    console.log("   RATE LIMIT TEST COMPLETED");
+    console.log("========================================");
+
+}
+
+main().catch(console.error);
+
+================================================================================
+FILE: src\test-roles.ts
+================================================================================
+import {
+  DEFAULT_ROLE,
+  Role,
+  hasRole,
+  hasAnyRole,
+  isAdmin,
+  isModerator,
+  isSuperAdmin,
+  isUser,
+} from "./auth";
+
+console.log("========== ROLES ==========\n");
+
+console.log("Default Role :", DEFAULT_ROLE);
+
+console.log();
+
+console.log("USER");
+console.log(isUser(Role.USER));
+
+console.log();
+
+console.log("ADMIN");
+console.log(isAdmin(Role.ADMIN));
+
+console.log();
+
+console.log("MODERATOR");
+console.log(isModerator(Role.MODERATOR));
+
+console.log();
+
+console.log("SUPER ADMIN");
+console.log(isSuperAdmin(Role.SUPER_ADMIN));
+
+console.log();
+
+console.log(
+  "Has Role ADMIN:",
+  hasRole(Role.ADMIN, Role.ADMIN)
+);
+
+console.log();
+
+console.log(
+  "Has Any Role:",
+  hasAnyRole(Role.MODERATOR, [
+    Role.ADMIN,
+    Role.MODERATOR,
+  ])
+);
+
+console.log("\n===========================");
+
+================================================================================
+FILE: src\test-security.ts
+================================================================================
+
+
+================================================================================
+FILE: src\test-session.ts
+================================================================================
+import {
+  isSessionExpired,
+  getRemainingTime,
+} from "./auth";
+
+const session = {
+  user: {
+    id: "1",
+    email: "admin@gmail.com",
+    name: "Admin",
+    role: "ADMIN",
+  },
+  expiresAt: new Date(
+    Date.now() + 60000
+  ),
+};
+
+console.log("========== SESSION ==========\n");
+
+console.log(
+  "Expired:",
+  isSessionExpired(session)
+);
+
+console.log(
+  "Remaining:",
+  getRemainingTime(session),
+  "ms"
+);
+
+console.log("\n=============================");
+
+================================================================================
+FILE: src\test-validation.ts
+================================================================================
+import { z } from "zod";
+import {
+  validate,
+  validateOrThrow,
+} from "./validation";
+
+const loginSchema = z.object({
+  email: z.email(),
+  password: z.string().min(8),
+});
+
+console.log("========== AVSS Lite Validation ==========");
+
+const success = validate(loginSchema, {
+  email: "admin@gmail.com",
+  password: "AvidevSecure121zone",
+});
+
+console.log("\n✅ VALID DATA");
+console.table(success);
+
+const failed = validate(loginSchema, {
+  email: "admin",
+  password: "123",
+});
+
+console.log("\n❌ INVALID DATA");
+console.table(failed);
+
+try {
+  console.log("\n🚀 validateOrThrow");
+
+  const data = validateOrThrow(loginSchema, {
+    email: "admin@gmail.com",
+    password: "admin123",
+  });
+
+  console.table(data);
+} catch (error) {
+  console.error(error);
+}
+
+console.log("==========================================");
+
+
+================================================================================
+FILE: src\utils\logger.ts
+================================================================================
+export type LogLevel =
+  | "INFO"
+  | "SUCCESS"
+  | "WARN"
+  | "ERROR"
+  | "DEBUG"
+  | "SECURITY"
+  | "DATABASE"
+  | "ACCESS"
+  | "FATAL";
+
+export class Logger {
+  private colors: Record<LogLevel, string> = {
+    INFO: "\x1b[36m",       // Cyan
+    SUCCESS: "\x1b[32m",    // Green
+    WARN: "\x1b[33m",       // Yellow
+    ERROR: "\x1b[31m",      // Red
+    DEBUG: "\x1b[35m",      // Magenta
+    SECURITY: "\x1b[91m",   // Bright Red
+    DATABASE: "\x1b[34m",   // Blue
+    ACCESS: "\x1b[96m",     // Bright Cyan
+    FATAL: "\x1b[41m\x1b[37m", // White text + Red background
+  };
+
+  private readonly RESET = "\x1b[0m";
+
+  private getTimestamp(): string {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    const hour = String(now.getHours()).padStart(2, "0");
+    const minute = String(now.getMinutes()).padStart(2, "0");
+    const second = String(now.getSeconds()).padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  }
+
+  private log(level: LogLevel, message: string): void {
+    const color = this.colors[level];
+
+    console.log(
+      `[${this.getTimestamp()}] ${color}${level.padEnd(9)}${this.RESET} ${message}`
+    );
+  }
+
+  info(message: string): void {
+    this.log("INFO", message);
+  }
+
+  success(message: string): void {
+    this.log("SUCCESS", message);
+  }
+
+  warn(message: string): void {
+    this.log("WARN", message);
+  }
+
+  error(message: string): void {
+    this.log("ERROR", message);
+  }
+
+  debug(message: string): void {
+    this.log("DEBUG", message);
+  }
+
+  security(message: string): void {
+    this.log("SECURITY", message);
+  }
+
+  database(message: string): void {
+    this.log("DATABASE", message);
+  }
+
+  access(message: string): void {
+    this.log("ACCESS", message);
+  }
+
+  fatal(message: string): void {
+    this.log("FATAL", message);
+  }
+}
+
+export const logger = new Logger();
+
+================================================================================
+FILE: src\validation\index.ts
+================================================================================
+export * from "./validation";
+
+
+================================================================================
+FILE: src\validation\validation.ts
+================================================================================
+import { ZodType } from "zod";
+
+export interface ValidationResult<T> {
+  success: boolean;
+  data?: T;
+  errors?: string[];
+}
+
+export function validate<T>(
+  schema: ZodType<T>,
+  input: unknown
+): ValidationResult<T> {
+  const result = schema.safeParse(input);
+
+  if (result.success) {
+    return {
+      success: true,
+      data: result.data,
+    };
+  }
+
+  return {
+    success: false,
+    errors: result.error.issues.map(
+      (issue) => issue.message
+    ),
+  };
+}
+
+export function validateOrThrow<T>(
+  schema: ZodType<T>,
+  input: unknown
+): T {
+  return schema.parse(input);
+}
+
+================================================================================
+FILE: tsconfig.json
+================================================================================
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "strict": true,
+    "skipLibCheck": true,
+
+    "types": [
+      "bun-types"
+    ],
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx"
+  },
+
+  "include": [
+    "src"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "prisma"
+  ]
+}
