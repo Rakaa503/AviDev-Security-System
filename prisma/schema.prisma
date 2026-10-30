@@ -4,5 +4,5 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("postgresql://postgres@localhost:5432/avss_lite?schema=public")
+  url      = env("DATABASE_URL")
 }
