@@ -1,0 +1,84 @@
+@echo off
+setlocal EnableExtensions EnableDelayedExpansion
+title AVSS LITE :: HACKER TEST LAB
+color 0A
+cls
+
+echo.
+echo  ============================================================
+echo     AVSS LITE :: SECURITY TEST LAB
+echo     MODE       : COMPREHENSIVE TESTING
+echo     ENGINE     : VITEST + V8 COVERAGE
+echo     ENVIRONMENT: WINDOWS CMD
+echo  ============================================================
+echo.
+
+if not exist "package.json" (
+    color 0C
+    echo  [ERROR] package.json tidak ditemukan.
+    echo  [ERROR] Jalankan script dari folder root AVSS Lite.
+    set "TEST_EXIT=1"
+    goto :finish
+)
+
+if not exist "node_modules\.bin\vitest.cmd" (
+    color 0C
+    echo  [ERROR] Vitest tidak ditemukan.
+    echo  [ACTION] Jalankan npm install terlebih dahulu.
+    set "TEST_EXIT=1"
+    goto :finish
+)
+
+echo  [OK] Project configuration detected
+echo  [OK] Vitest executable detected
+echo  [OK] Node.js package environment detected
+echo.
+echo  [SYSTEM] Initializing test environment...
+echo.
+
+echo  [#.............] INITIALIZING
+timeout /t 1 /nobreak >nul
+echo  [####..........] LOADING TEST ENGINE
+timeout /t 1 /nobreak >nul
+echo  [########......] PREPARING TEST SUITE
+timeout /t 1 /nobreak >nul
+echo  [##############] SYSTEM READY
+echo.
+
+echo  ============================================================
+echo                       LIVE TEST OUTPUT
+echo  ============================================================
+echo.
+echo  [RUN] Executing Vitest with V8 coverage...
+echo.
+
+call npm run test:coverage
+set "TEST_EXIT=!ERRORLEVEL!"
+
+echo.
+echo  ============================================================
+echo                        FINAL REPORT
+echo  ============================================================
+echo.
+
+if "!TEST_EXIT!"=="0" (
+    color 0A
+    echo  [PASS] Test command completed successfully.
+    echo  [INFO] Review Vitest output for passed and failed test counts.
+) else (
+    color 0C
+    echo  [FAIL] Test command failed.
+    echo  [INFO] Review the Vitest output above.
+)
+
+echo.
+echo  [RESULT] Exit code: !TEST_EXIT!
+echo  ============================================================
+echo.
+
+:finish
+echo  Press any key to close this test lab...
+pause >nul
+
+if "!TEST_EXIT!"=="" set "TEST_EXIT=1"
+endlocal & exit /b %TEST_EXIT%
