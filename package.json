@@ -22,9 +22,9 @@
     "check": "tsc --noEmit",
     "generate": "prisma generate",
     "clean": "rimraf dist",
-    "test": "vitest run",
+    "test": "node scripts/run-vitest-report.mjs",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "node scripts/run-vitest-report.mjs --coverage"
   },
   "keywords": [
     "avidev",
