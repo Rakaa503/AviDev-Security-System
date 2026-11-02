@@ -182,3 +182,4 @@ child.on("close", (exitCode) => {
     process.exitCode = exitCode || 1;
   }
 });
+
